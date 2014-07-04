@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="18">
+    <Units Count="16">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -20,8 +20,8 @@
         <UnitName Value="Main"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="44"/>
-        <CursorPos X="1" Y="109"/>
+        <TopLine Value="68"/>
+        <CursorPos X="1" Y="97"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -32,8 +32,8 @@
         <UnitName Value="metadata"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="76"/>
-        <CursorPos X="77" Y="94"/>
+        <TopLine Value="73"/>
+        <CursorPos X="31" Y="22"/>
         <UsageCount Value="242"/>
         <Loaded Value="True"/>
       </Unit2>
@@ -44,9 +44,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="318"/>
-        <CursorPos X="37" Y="334"/>
-        <UsageCount Value="67"/>
+        <TopLine Value="57"/>
+        <CursorPos X="5" Y="78"/>
+        <UsageCount Value="87"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -54,42 +54,42 @@
         <WindowIndex Value="0"/>
         <TopLine Value="67"/>
         <CursorPos X="1" Y="85"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit4>
       <Unit5>
         <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1939"/>
         <CursorPos X="1" Y="1957"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="3"/>
       </Unit5>
       <Unit6>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="3631"/>
         <CursorPos X="1" Y="3655"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit6>
       <Unit7>
         <Filename Value="C:\lazarus\lcl\include\customcombobox.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="186"/>
         <CursorPos X="1" Y="204"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="10"/>
       </Unit7>
       <Unit8>
         <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="7237"/>
         <CursorPos X="1" Y="7255"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit8>
       <Unit9>
         <Filename Value="C:\lazarus\lcl\include\speedbutton.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="100"/>
         <CursorPos X="1" Y="118"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit9>
       <Unit10>
         <Filename Value="C:\lazarus\lcl\controls.pp"/>
@@ -97,60 +97,46 @@
         <WindowIndex Value="0"/>
         <TopLine Value="2114"/>
         <CursorPos X="50" Y="2119"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="1"/>
       </Unit10>
       <Unit11>
-        <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\objpas\classes\classesh.inc"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="367"/>
-        <CursorPos X="48" Y="385"/>
-        <UsageCount Value="1"/>
-      </Unit11>
-      <Unit12>
-        <Filename Value="C:\lazarus\lcl\include\winapi.inc"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="594"/>
-        <CursorPos X="1" Y="612"/>
-        <UsageCount Value="1"/>
-      </Unit12>
-      <Unit13>
-        <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\inc\objpash.inc"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="202"/>
-        <CursorPos X="8" Y="187"/>
-        <UsageCount Value="1"/>
-      </Unit13>
-      <Unit14>
         <Filename Value="C:\lazarus\lcl\interfaces\win32\win32proc.pp"/>
         <UnitName Value="win32proc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="687"/>
         <CursorPos X="1" Y="705"/>
-        <UsageCount Value="3"/>
-      </Unit14>
-      <Unit15>
+        <UsageCount Value="1"/>
+      </Unit11>
+      <Unit12>
         <Filename Value="C:\lazarus\lcl\dbgrids.pas"/>
         <UnitName Value="DBGrids"/>
         <WindowIndex Value="0"/>
         <TopLine Value="3396"/>
         <CursorPos X="1" Y="3414"/>
-        <UsageCount Value="6"/>
-      </Unit15>
-      <Unit16>
+        <UsageCount Value="4"/>
+      </Unit12>
+      <Unit13>
         <Filename Value="C:\lazarus\lcl\include\scrollbox.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="31"/>
-        <UsageCount Value="6"/>
-      </Unit16>
-      <Unit17>
+        <UsageCount Value="4"/>
+      </Unit13>
+      <Unit14>
         <Filename Value="C:\lazarus\lcl\lclclasses.pp"/>
         <UnitName Value="LCLClasses"/>
         <WindowIndex Value="0"/>
         <TopLine Value="113"/>
         <CursorPos X="1" Y="131"/>
-        <UsageCount Value="6"/>
-      </Unit17>
+        <UsageCount Value="4"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\inc\systemh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="917"/>
+        <CursorPos X="11" Y="935"/>
+        <UsageCount Value="12"/>
+      </Unit15>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
@@ -158,123 +144,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="328" Column="1" TopLine="315"/>
+        <Caret Line="326" Column="1" TopLine="314"/>
       </Position1>
       <Position2>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="329" Column="1" TopLine="315"/>
+        <Caret Line="327" Column="1" TopLine="314"/>
       </Position2>
       <Position3>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="330" Column="1" TopLine="315"/>
+        <Caret Line="328" Column="1" TopLine="314"/>
       </Position3>
       <Position4>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="331" Column="1" TopLine="315"/>
+        <Caret Line="329" Column="1" TopLine="314"/>
       </Position4>
       <Position5>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="332" Column="1" TopLine="315"/>
+        <Caret Line="330" Column="1" TopLine="314"/>
       </Position5>
       <Position6>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="333" Column="1" TopLine="318"/>
+        <Caret Line="331" Column="1" TopLine="314"/>
       </Position6>
       <Position7>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="394" Column="3" TopLine="338"/>
+        <Caret Line="332" Column="1" TopLine="314"/>
       </Position7>
       <Position8>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="327" Column="36" TopLine="314"/>
+        <Caret Line="333" Column="1" TopLine="314"/>
       </Position8>
       <Position9>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="325" Column="1" TopLine="314"/>
+        <Caret Line="341" Column="1" TopLine="314"/>
       </Position9>
       <Position10>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="326" Column="1" TopLine="314"/>
+        <Caret Line="342" Column="1" TopLine="314"/>
       </Position10>
       <Position11>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="327" Column="1" TopLine="314"/>
+        <Caret Line="323" Column="1" TopLine="314"/>
       </Position11>
       <Position12>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="328" Column="1" TopLine="314"/>
+        <Caret Line="322" Column="8" TopLine="315"/>
       </Position12>
       <Position13>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="329" Column="1" TopLine="314"/>
+        <Caret Line="324" Column="106" TopLine="315"/>
       </Position13>
       <Position14>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="330" Column="1" TopLine="314"/>
+        <Caret Line="331" Column="1" TopLine="315"/>
       </Position14>
       <Position15>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="331" Column="1" TopLine="314"/>
+        <Caret Line="332" Column="1" TopLine="315"/>
       </Position15>
       <Position16>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="332" Column="1" TopLine="314"/>
+        <Caret Line="333" Column="1" TopLine="315"/>
       </Position16>
       <Position17>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="333" Column="1" TopLine="314"/>
+        <Caret Line="334" Column="1" TopLine="315"/>
       </Position17>
       <Position18>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="341" Column="1" TopLine="314"/>
+        <Caret Line="342" Column="1" TopLine="315"/>
       </Position18>
       <Position19>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="342" Column="1" TopLine="314"/>
+        <Caret Line="343" Column="1" TopLine="315"/>
       </Position19>
       <Position20>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="323" Column="1" TopLine="314"/>
+        <Caret Line="325" Column="1" TopLine="315"/>
       </Position20>
       <Position21>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="322" Column="8" TopLine="315"/>
+        <Caret Line="333" Column="31" TopLine="320"/>
       </Position21>
       <Position22>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="324" Column="106" TopLine="315"/>
+        <Caret Line="188" Column="19" TopLine="160"/>
       </Position22>
       <Position23>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="331" Column="1" TopLine="315"/>
+        <Caret Line="28" Column="15" TopLine="10"/>
       </Position23>
       <Position24>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="332" Column="1" TopLine="315"/>
+        <Caret Line="76" Column="62" TopLine="55"/>
       </Position24>
       <Position25>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="333" Column="1" TopLine="315"/>
+        <Caret Line="78" Column="51" TopLine="52"/>
       </Position25>
       <Position26>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="334" Column="1" TopLine="315"/>
+        <Caret Line="195" Column="34" TopLine="176"/>
       </Position26>
       <Position27>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="342" Column="1" TopLine="315"/>
+        <Caret Line="165" Column="26" TopLine="147"/>
       </Position27>
       <Position28>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="343" Column="1" TopLine="315"/>
+        <Caret Line="76" Column="92" TopLine="276"/>
       </Position28>
       <Position29>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="325" Column="1" TopLine="315"/>
+        <Caret Line="72" Column="67" TopLine="57"/>
       </Position29>
       <Position30>
         <Filename Value="formforhandbooks.pas"/>
-        <Caret Line="333" Column="31" TopLine="320"/>
+        <Caret Line="77" Column="1" TopLine="57"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

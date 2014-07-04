@@ -35,10 +35,12 @@ type
     T: TDBGrid;
     SQLTr: TSQLTransaction;
     IBCon: TIBConnection;
-    BCreateNewFilter, ApplyFilter: TButton;
+    BCreateNewFilter, ApplyFilter, BAddNewRec, BRemoveRec: TButton;
     CheckBoxApply: TCheckBox;
     LabelApply: TLabel;
     ScrollBox: TScrollBox;
+    procedure RemoveRecOnClick (Sender: TObject);
+    procedure AddRecOnClick (Sender: TObject);
     procedure RemoveFilter(Sender: TObject);
     procedure MyOnDoubleClick(Sender: TObject);
     procedure SendQuery(s: string);
@@ -68,9 +70,29 @@ const
 
 implementation
 
-procedure TForm2.MyOnDoubleClick(Sender: TObject);
+procedure TForm2.AddRecOnClick (Sender: TObject);
+begin
+  SQLQuery.Close;
+  ShowMessage('INSERT INTO Professors VALUES(NEXT VALUE FOR Professor_ID,' +  char(39) + 'Gtr' + char(39) + ');');
+  SQLQuery.SQL.Text := 'INSERT INTO Professors VALUES(NEXT VALUE FOR Professor_ID, ' +  char(39) + 'Gtr' + char(39) + ' );';
+  //SQLQuery.Open;
+end;
+
+procedure TForm2.RemoveRecOnClick (Sender: TObject);
 begin
 
+end;
+
+procedure TForm2.MyOnDoubleClick(Sender: TObject);
+var
+  i: integer;
+begin
+  //ShowMessage('Yes it is Double click!');
+  //ShowMessage(IntToStr(DS.DataSet.RecNo));
+  for i := 0 to High(Table[Self.Tag].Columns) do
+      ShowMessage(SQLQuery.FieldByName(Table[Self.Tag].Columns[i].NameRus).Value);
+//  SELECT a.ID, a.NAME, a.GROUP_SIZE
+//FROM GROUPS a
 end;
 
 constructor TForm2.CreateNew(Sender: TComponent);
@@ -82,6 +104,7 @@ begin
   T.Width := Width - 390;
   T.Height := Height;
   T.Parent := Self;
+  T.OnDblClick := @MyOnDoubleClick;
 
   CheckBoxApply := TCheckBox.Create(Self);
   CheckBoxApply.Parent := Self;
@@ -136,6 +159,22 @@ begin
   ApplyFilter.Caption := 'Применить Фильтры';
   ApplyFilter.OnClick := @ApplyFilterOnClick;
 
+  BRemoveRec := TButton.Create(Self);
+  BRemoveRec.Parent := Self;
+  BRemoveRec.Left := 0;
+  BRemoveRec.Width := 120;
+  BRemoveRec.Height := 30;
+  BRemoveRec.Caption := 'Удалить запись';
+  BRemoveRec.OnClick := @RemoveRecOnClick;
+
+  BAddNewRec := TButton.Create(Self);
+  BAddNewRec.Parent := Self;
+  BAddNewRec.Left := 120;
+  BAddNewRec.Width := 120;
+  BAddNewRec.Height := 30;
+  BAddNewRec.Caption := 'Добавить запись';
+  BAddNewRec.OnClick := @AddRecOnClick;
+
   T.OnTitleClick := @MyOnTitleClick;
   OrderByPar := '';
   Show;
@@ -153,8 +192,10 @@ procedure TForm2.MyOnResize(Sender: TObject);
 var
   i: integer;
 begin
-  T.Height := Height;
+  T.Height := Height - 30;
   T.Width := Width - 390;
+  BRemoveRec.Top := T.Height;
+  BAddNewRec.Top := T.Height;
   BCreateNewFilter.Left := T.Width + 30;
   ApplyFilter.Left := T.Width + 210;
   CheckBoxApply.Left := T.Width + 30;
@@ -214,6 +255,7 @@ begin
   end;
   for i := 0 to High(Table[TableNum].Columns) do
     T.Columns.Items[i].Width := TableWidth[i];
+  ShowMessage(s);
 end;
 
 function TForm2.MakeQuery: string;
@@ -297,16 +339,13 @@ begin
   SendQuery(s);
 end;
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 {Filter}
 
 procedure TFilter.Assign(Filter: TFilter);
 begin
   ColName.ItemIndex := Filter.ColName.ItemIndex;
   cmp.ItemIndex := Filter.cmp.ItemIndex;
+  ColName.ItemIndex := Filter.ColName.ItemIndex;
   FilterVal.Caption := Filter.FilterVal.Caption;
   FilterVal.Visible := Filter.FilterVal.Visible;
   FilterValInt.Caption := Filter.FilterValInt.Caption;

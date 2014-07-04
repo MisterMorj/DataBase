@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = 612
-  Height = 622
-  Top = 68
-  Width = 738
+  Left = 683
+  Height = 750
+  Top = 159
+  Width = 667
   Caption = 'Form1'
-  ClientHeight = 602
-  ClientWidth = 738
+  ClientHeight = 730
+  ClientWidth = 667
   Menu = MainMenu1
   OnCreate = FormCreate
   Position = poScreenCenter
