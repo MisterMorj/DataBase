@@ -5,37 +5,39 @@ unit Filters;
 interface
 
 uses
-  Classes, SysUtils, sqldb, db, FileUtil, Forms, Controls, Graphics, Dialogs,
+  Classes, SysUtils, sqldb, DB, FileUtil, Forms, Controls, Graphics, Dialogs,
   ExtCtrls, DBGrids, StdCtrls, SqlComponents, metadata, Spin, Buttons;
 
 type
 
-Tproc = procedure (Sender: TObject) of object;
+  Tproc = procedure(Sender: TObject) of object;
 
-TFilter = class(TObject)
-  NewComp: TWinControl;
-  ColName: TComboBox;
-  cmp: TComboBox;
-  FilterVal: TCustomEdit;
-  BRemove: TSpeedButton;
-  DataType: string;
-  TableNumber: integer;
-  procedure OnColumnChange(Sender: TObject);
-  constructor Create(Ind: integer; TableNum: integer; Parent: TWinControl; ProcRemove: TProc);
-end;
+  TFilter = class(TObject)
+    NewComp: TWinControl;
+    ColName: TComboBox;
+    cmp: TComboBox;
+    FilterVal: TCustomEdit;
+    BRemove: TSpeedButton;
+    DataType: string;
+    TableNumber: integer;
+    procedure OnColumnChange(Sender: TObject);
+    constructor Create(Ind: integer; TableNum: integer; Parent: TWinControl;
+      ProcRemove: TProc);
+  end;
 
-TArrayFilters = class(TObject)
-  Filters: array of TFilter;
-  procedure AddFilter(TableNum: integer; Parent: TWinControl);
-  procedure RemoveFilter(Sender: TObject);
-end;
+  TArrayFilters = class(TObject)
+    Filters: array of TFilter;
+    procedure AddFilter(TableNum: integer; Parent: TWinControl);
+    procedure RemoveFilter(Sender: TObject);
+  end;
 
 implementation
 
 procedure TArrayFilters.AddFilter(TableNum: integer; Parent: TWinControl);
 begin
   SetLength(Filters, Length(Filters) + 1);
-  Filters[High(Filters)] := TFilter.Create(High(Filters), TableNum, Parent, @RemoveFilter);
+  Filters[High(Filters)] := TFilter.Create(High(Filters), TableNum,
+    Parent, @RemoveFilter);
 end;
 
 procedure TArrayFilters.RemoveFilter(Sender: TObject);
@@ -64,7 +66,7 @@ end;
 
 procedure TFilter.OnColumnChange(Sender: TObject);
 var
-  i, j: integer;
+  i: integer;
 begin
   for i := 0 to High(Table[TableNumber].Columns) do
     if Table[TableNumber].Columns[i].NameRus = ColName.Text then
@@ -93,7 +95,8 @@ begin
     end;
 end;
 
-constructor TFilter.Create(Ind: integer; TableNum: integer; Parent: TWinControl; ProcRemove: TProc);
+constructor TFilter.Create(Ind: integer; TableNum: integer; Parent: TWinControl;
+  ProcRemove: TProc);
 var
   i: integer;
 begin
@@ -130,9 +133,7 @@ begin
   BRemove.Left := 2;
 
   FilterVal := TEdit.Create(BRemove);
-
   OnColumnChange(Self);
 end;
 
 end.
-

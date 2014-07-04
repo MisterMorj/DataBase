@@ -1,7 +1,7 @@
 object FShedule: TFShedule
-  Left = 536
+  Left = 525
   Height = 500
-  Top = 5
+  Top = 93
   Width = 657
   Caption = 'FShedule'
   ClientHeight = 500
@@ -26,6 +26,7 @@ object FShedule: TFShedule
       Top = 0
       Width = 304
       Caption = 'Применить'
+      OnClick = ApplyClick
       TabOrder = 0
     end
     object Label1: TLabel
@@ -100,7 +101,11 @@ object FShedule: TFShedule
     Top = 0
     Width = 354
     Anchors = [akTop, akLeft, akRight, akBottom]
+    ColCount = 0
     ExtendedSelect = False
+    FixedCols = 0
+    FixedRows = 0
+    RowCount = 0
     TabOrder = 2
     OnDrawCell = DrawGrid1DrawCell
   end
@@ -154,7 +159,7 @@ object FShedule: TFShedule
     Database = DataModule1.IBConnection1
     Transaction = DataModule1.SQLTransaction1
     Params = <>
-    left = 96
+    left = 120
     top = 128
   end
   object Datasource1: TDatasource

@@ -2,14 +2,18 @@ program NewDb;
 
 {$mode objfpc}{$H+}
 
-uses
-  {$IFDEF UNIX}{$IFDEF UseCThreads}
-  cthreads,
-  {$ENDIF}{$ENDIF}
+uses {$IFDEF UNIX} {$IFDEF UseCThreads}
+  cthreads, {$ENDIF} {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, main, metadata, SqlComponents, UCatalogs, Ueditingform, ScheduleForm,
-  Filters
-  { you can add units after this };
+  Forms,
+  main,
+  metadata,
+  SqlComponents,
+  UCatalogs,
+  Ueditingform,
+  ScheduleForm,
+  Filters,
+  UQuery { you can add units after this };
 
 {$R *.res}
 
@@ -22,4 +26,3 @@ begin
   Application.CreateForm(TFShedule, FShedule);
   Application.Run;
 end.
-

@@ -38,8 +38,7 @@ implementation
 
 procedure TFMain.CatalogsMenuClick(Sender: TObject);
 var
-  i, j, TableNum, FormNum: integer;
-  s: string;
+  FormNum: integer;
 begin
   SetLength(Catalogs, Length(Catalogs) + 1);
   FormNum := High(Catalogs);

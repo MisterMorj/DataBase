@@ -1,9 +1,9 @@
 object DataModule1: TDataModule1
   OldCreateOrder = False
-  Height = 530
-  HorizontalOffset = -398
-  VerticalOffset = 207
-  Width = 1316
+  Height = 154
+  HorizontalOffset = 782
+  VerticalOffset = 489
+  Width = 313
   object IBConnection1: TIBConnection
     Connected = False
     LoginPrompt = False

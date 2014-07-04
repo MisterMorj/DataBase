@@ -1,8 +1,8 @@
 object FMain: TFMain
-  Left = 480
-  Height = 422
-  Top = 181
-  Width = 690
+  Left = 279
+  Height = 220
+  Top = 76
+  Width = 241
   Caption = 'FMain'
   Menu = MainMenu1
   OnCreate = FormCreate

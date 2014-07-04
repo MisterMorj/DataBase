@@ -1,7 +1,7 @@
 object Catalog: TCatalog
-  Left = 219
-  Height = 645
-  Top = 222
+  Left = 350
+  Height = 477
+  Top = 202
   Width = 829
   Caption = 'Catalog'
   ClientHeight = 0
@@ -18,11 +18,11 @@ object Catalog: TCatalog
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 526
-    Height = 477
+    Height = 309
     Top = 168
     Width = 303
     HorzScrollBar.Page = 299
-    VertScrollBar.Page = 473
+    VertScrollBar.Page = 305
     Anchors = [akTop, akLeft, akRight, akBottom]
     TabOrder = 0
   end
@@ -65,7 +65,7 @@ object Catalog: TCatalog
     AnchorSideRight.Control = ToolPanel
     AnchorSideBottom.Control = Panel2
     Left = 0
-    Height = 603
+    Height = 435
     Top = 0
     Width = 526
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -86,7 +86,7 @@ object Catalog: TCatalog
     AnchorSideBottom.Side = asrBottom
     Left = 0
     Height = 42
-    Top = 603
+    Top = 435
     Width = 526
     Anchors = [akLeft, akRight, akBottom]
     ClientHeight = 42

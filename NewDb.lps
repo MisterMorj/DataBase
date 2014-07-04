@@ -4,16 +4,16 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="13">
+    <Units Count="14">
       <Unit0>
         <Filename Value="NewDb.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="NewDb"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="34" Y="13"/>
-        <UsageCount Value="98"/>
+        <CursorPos X="5" Y="28"/>
+        <UsageCount Value="170"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -25,10 +25,9 @@
         <UnitName Value="main"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="17" Y="69"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="98"/>
+        <TopLine Value="27"/>
+        <CursorPos X="45" Y="45"/>
+        <UsageCount Value="170"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -36,11 +35,11 @@
         <Filename Value="metadata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="metadata"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="43"/>
-        <CursorPos X="78" Y="101"/>
-        <UsageCount Value="98"/>
+        <TopLine Value="84"/>
+        <CursorPos X="35" Y="92"/>
+        <UsageCount Value="170"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -50,12 +49,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="SqlComponents"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="38" Y="20"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="98"/>
+        <UsageCount Value="170"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit3>
@@ -68,10 +66,9 @@
         <UnitName Value="UCatalogs"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="169"/>
-        <CursorPos X="25" Y="126"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="98"/>
+        <TopLine Value="52"/>
+        <CursorPos X="33" Y="83"/>
+        <UsageCount Value="170"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -82,12 +79,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Ueditingform"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="1" Y="15"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="98"/>
+        <CursorPos X="48" Y="56"/>
+        <UsageCount Value="170"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit5>
@@ -101,9 +97,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="50"/>
-        <CursorPos X="53" Y="62"/>
-        <UsageCount Value="87"/>
+        <TopLine Value="187"/>
+        <CursorPos X="45" Y="202"/>
+        <UsageCount Value="159"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit6>
@@ -111,176 +107,176 @@
         <Filename Value="filters.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Filters"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="45"/>
-        <CursorPos X="91" Y="32"/>
-        <UsageCount Value="37"/>
+        <TopLine Value="22"/>
+        <CursorPos X="38" Y="135"/>
+        <UsageCount Value="109"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
-        <Filename Value="C:\lazarus\lcl\stdctrls.pp"/>
-        <UnitName Value="StdCtrls"/>
+        <Filename Value="uquery.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UQuery"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="758"/>
-        <CursorPos X="14" Y="775"/>
-        <UsageCount Value="2"/>
+        <TopLine Value="1"/>
+        <CursorPos X="106" Y="15"/>
+        <UsageCount Value="65"/>
+        <Loaded Value="True"/>
       </Unit8>
       <Unit9>
-        <Filename Value="C:\lazarus\lcl\controls.pp"/>
-        <UnitName Value="Controls"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="2114"/>
-        <CursorPos X="40" Y="2122"/>
-        <UsageCount Value="3"/>
-      </Unit9>
-      <Unit10>
-        <Filename Value="C:\lazarus\lcl\lcltype.pp"/>
-        <UnitName Value="LCLType"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="54"/>
-        <CursorPos X="3" Y="72"/>
-        <UsageCount Value="2"/>
-      </Unit10>
-      <Unit11>
         <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="445"/>
         <CursorPos X="1" Y="456"/>
-        <UsageCount Value="10"/>
-      </Unit11>
-      <Unit12>
+        <UsageCount Value="3"/>
+      </Unit9>
+      <Unit10>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="3933"/>
-        <CursorPos X="1" Y="3951"/>
-        <UsageCount Value="3"/>
+        <TopLine Value="2721"/>
+        <CursorPos X="73" Y="2737"/>
+        <UsageCount Value="7"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="C:\lazarus\lcl\include\customcombobox.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="935"/>
+        <CursorPos X="33" Y="946"/>
+        <UsageCount Value="8"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="C:\lazarus\lcl\include\customcheckgroup.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="170"/>
+        <CursorPos X="1" Y="89"/>
+        <UsageCount Value="9"/>
       </Unit12>
+      <Unit13>
+        <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\inc\objpash.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="175"/>
+        <CursorPos X="8" Y="187"/>
+        <UsageCount Value="9"/>
+      </Unit13>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="28" HistoryIndex="27">
       <Position1>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="197" Column="27" TopLine="179"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="208" Column="1" TopLine="193"/>
       </Position1>
       <Position2>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="51" Column="1" TopLine="14"/>
+        <Caret Line="211" Column="1" TopLine="193"/>
       </Position2>
       <Position3>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="10" Column="3" TopLine="1"/>
+        <Caret Line="208" Column="1" TopLine="193"/>
       </Position3>
       <Position4>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Caret Line="211" Column="1" TopLine="193"/>
       </Position4>
       <Position5>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="10" Column="10" TopLine="1"/>
+        <Caret Line="208" Column="1" TopLine="193"/>
       </Position5>
       <Position6>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="42" Column="17" TopLine="22"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="211" Column="1" TopLine="193"/>
       </Position6>
       <Position7>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="68" Column="34" TopLine="50"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="208" Column="1" TopLine="193"/>
       </Position7>
       <Position8>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="69" Column="73" TopLine="51"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="211" Column="1" TopLine="193"/>
       </Position8>
       <Position9>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="140" Column="15" TopLine="122"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="208" Column="1" TopLine="193"/>
       </Position9>
       <Position10>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="145" Column="15" TopLine="127"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="211" Column="1" TopLine="193"/>
       </Position10>
       <Position11>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="173" Column="23" TopLine="155"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="208" Column="1" TopLine="193"/>
       </Position11>
       <Position12>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="175" Column="34" TopLine="157"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="81" Column="1" TopLine="63"/>
       </Position12>
       <Position13>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="177" Column="24" TopLine="159"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="82" Column="1" TopLine="63"/>
       </Position13>
       <Position14>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="189" Column="20" TopLine="171"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="206" Column="1" TopLine="198"/>
       </Position14>
       <Position15>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="197" Column="24" TopLine="179"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="207" Column="1" TopLine="198"/>
       </Position15>
       <Position16>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="36" Column="17" TopLine="13"/>
+        <Caret Line="208" Column="1" TopLine="198"/>
       </Position16>
       <Position17>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="72" Column="39" TopLine="38"/>
+        <Caret Line="211" Column="1" TopLine="198"/>
       </Position17>
       <Position18>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="72" Column="16" TopLine="40"/>
+        <Caret Line="208" Column="1" TopLine="198"/>
       </Position18>
       <Position19>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="66" Column="48" TopLine="39"/>
+        <Caret Line="211" Column="1" TopLine="198"/>
       </Position19>
       <Position20>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="140" Column="1" TopLine="127"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="219" Column="1" TopLine="198"/>
       </Position20>
       <Position21>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="114" Column="48" TopLine="210"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="203" Column="1" TopLine="196"/>
       </Position21>
       <Position22>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="219" Column="1" TopLine="210"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="204" Column="1" TopLine="196"/>
       </Position22>
       <Position23>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="220" Column="1" TopLine="210"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="206" Column="1" TopLine="196"/>
       </Position23>
       <Position24>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="243" Column="1" TopLine="210"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="207" Column="1" TopLine="196"/>
       </Position24>
       <Position25>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="219" Column="1" TopLine="210"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="206" Column="11" TopLine="193"/>
       </Position25>
       <Position26>
-        <Filename Value="ucatalogs.pas"/>
-        <Caret Line="220" Column="1" TopLine="210"/>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="219" Column="1" TopLine="193"/>
       </Position26>
       <Position27>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="71" Column="52" TopLine="42"/>
+        <Caret Line="203" Column="1" TopLine="193"/>
       </Position27>
       <Position28>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="82" Column="11" TopLine="49"/>
+        <Caret Line="204" Column="1" TopLine="193"/>
       </Position28>
-      <Position29>
-        <Filename Value="scheduleform.pas"/>
-        <Caret Line="64" Column="60" TopLine="50"/>
-      </Position29>
-      <Position30>
-        <Filename Value="scheduleform.pas"/>
-        <Caret Line="82" Column="5" TopLine="50"/>
-      </Position30>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
