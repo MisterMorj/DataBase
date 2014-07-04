@@ -19,7 +19,6 @@ TTableInfo = class(TObject)
 public
   TableNameRus: string;
   TableNameEng: string;
-  ObjCounterName: string;
   Columns: array of ColumnInfo;
   procedure AddColumn (NameRus, NameEng, RefT, RefP, RefV, DT: string; W: integer);
   constructor Create (NameRus, NameEng: string);
@@ -30,7 +29,6 @@ var
 
 const
   NumberOfTables = 10;
-  include = 'Включает';
 
 implementation
 
@@ -52,11 +50,10 @@ begin
   TableNameRus := NameRus;
 end;
 
-procedure AddTable (S1, S2, S3: string);
+procedure AddTable (S1, S2: string);
 begin
   setlength(Table, Length(Table) + 1);
   Table[High(Table)] := TTableInfo.Create(S1, S2);
-  Table[High(Table)].ObjCounterName := S3;
 end;
 
 procedure AddColumnInLastTables (S1, S2, RefT, RefP, RefV, DT: string; W: integer);
@@ -66,55 +63,55 @@ end;
 
 initialization
 
-  AddTable('Дни недели', 'DAYS', 'Day_Index');
-  AddColumnInLastTables('Индекс', 'ID', '', '', '', 'Int', 70);
+  AddTable('Дни недели', 'DAYS');
+  AddColumnInLastTables('Индекс', '"Index"', '', '', '', 'Int', 70);
   AddColumnInLastTables('День', 'NAME', '', '', '', 'Str', 100);
 
-  AddTable('Группы', 'GROUPS', 'Group_ID');
+  AddTable('Группы', 'GROUPS');
   AddColumnInLastTables('ID', 'ID', '', '', '', 'Int', 40);
   AddColumnInLastTables('Номер', 'NAME', '', '', '', 'Str', 70);
-  AddColumnInLastTables('Размер', 'GROUP_SIZE', '', '', '', 'Int', 60);
+  AddColumnInLastTables('Размер', 'GROUP_SIZE', '', '', '', 'Str', 60);
 
-  AddTable('Профессора', 'PROFESSORS', 'Professor_ID');
+  AddTable('Профессора', 'PROFESSORS');
   AddColumnInLastTables('ID', 'ID', '', '', '', 'Int', 40);
   AddColumnInLastTables('Ф.И.О', 'NAME', '', '', '', 'Str', 150);
 
-  AddTable('Професора - предметы', 'PROFESSORS_SUBJECTS', 'PS_ID');
+  AddTable('Професора - предметы', 'PROFESSORS_SUBJECTS');
   AddColumnInLastTables('ID', 'ID', '', '', '', 'Int', 40);
   AddColumnInLastTables('Профессор', 'PROFESSOR_ID', 'PROFESSORS', 'ID', 'NAME', 'Str', 150);
   AddColumnInLastTables('Предмет', 'SUBJECT_ID', 'SUBJECTS', 'ID', 'NAME', 'Str', 400);
 
-  AddTable('Аудитории', 'ROOMS', 'Room_ID');
+  AddTable('Аудитории', 'ROOMS');
   AddColumnInLastTables('ID', 'ID', '', '', '', 'Int', 40);
   AddColumnInLastTables('Номер', 'NAME', '', '', '', 'Str', 60);
-  AddColumnInLastTables('Вместимость', 'Size_', '', '', '', 'Int', 90);
+  AddColumnInLastTables('Вместимость', '"Size"', '', '', '', 'Str', 90);
 
-  AddTable('Расписание', 'SCHEDULE_ITEMS', 'Item_ID');
+  AddTable('Расписание', 'SCHEDULE_ITEMS');
   AddColumnInLastTables('ID', 'ID', '', '', '', 'Int', 40);
   AddColumnInLastTables('Предмет', 'SUBJECT_ID', 'SUBJECTS', 'ID', 'NAME', 'Str', 400);
   AddColumnInLastTables('Тип лекции', 'SUBJECT_TYPE_ID', 'SUBJECT_TYPES', 'ID', 'NAME', 'Str', 100);
   AddColumnInLastTables('Имя професора', 'PROFESSOR_ID', 'PROFESSORS', 'ID', 'NAME', 'Str', 150);
-  AddColumnInLastTables('Номер пары', 'TIME_INDEX', '', '', '', 'Int', 70);
-  AddColumnInLastTables('День недели', 'DAY_INDEX', 'DAYS', 'ID', 'NAME', 'Str', 70);
+  AddColumnInLastTables('Номер пары', 'TIME_INDEX', '', '', '', 'Str', 70);
+  AddColumnInLastTables('День недели', 'DAY_INDEX', 'DAYS', '"Index"', 'NAME', 'Str', 70);
   AddColumnInLastTables('№ группы', 'GROUP_ID', 'GROUPS', 'ID', 'NAME', 'Str', 70);
   AddColumnInLastTables('Кабинет', 'ROOM_ID', 'ROOMS', 'ID', 'NAME', 'Str', 70);
-  AddColumnInLastTables('Неделя', 'Week', '', '', '', 'Str', 60);
 
-  AddTable('Предметы', 'SUBJECTS', 'Subject_ID');
+  AddTable('Предметы', 'SUBJECTS');
   AddColumnInLastTables('ID', 'ID', '', '', '', 'Int', 40);
   AddColumnInLastTables('Предмет', 'NAME', '', '', '', 'Str', 350);
 
-  AddTable('Предметы - группы', 'SUBJECTS_GROUPS', 'SG_ID');
+  AddTable('Предметы - группы', 'SUBJECTS_GROUPS');
   AddColumnInLastTables('ID', 'ID', '', '', '', 'Int', 40);
   AddColumnInLastTables('ID предмета', 'SUBJECT_ID', 'SUBJECTS', 'ID', 'NAME', 'Str', 400);
   AddColumnInLastTables('ID группы', 'GROUP_ID', 'GROUPS', 'ID', 'NAME', 'Str', 90);
 
-  AddTable('Типы лекций', 'SUBJECT_TYPES', 'Type_ID');
+  AddTable('Типы лекций', 'SUBJECT_TYPES');
   AddColumnInLastTables('ID', 'ID', '', '', '', 'Int', 40);
   AddColumnInLastTables('Тип', 'NAME', '', '', '', 'Str', 40);
 
-  AddTable('Расписание', 'TIMES', 'Time_Index');
-  AddColumnInLastTables('Индекс', 'ID', '', '', '', 'Int', 60);
-  AddColumnInLastTables('Начало', 'Begin_', '', '', '', 'Str', 70);
-  AddColumnInLastTables('Конец', 'End_', '', '', '', 'Str', 70);
+  AddTable('Расписание', 'TIMES');
+  AddColumnInLastTables('Индекс', '"Index"', '', '', '', 'Int', 60);
+  AddColumnInLastTables('Начало', '"Begin"', '', '', '', 'Str', 70);
+  AddColumnInLastTables('Конец', '"End"', '', '', '', 'Str', 70);
 end.
+

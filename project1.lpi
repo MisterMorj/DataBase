@@ -6,7 +6,7 @@
     <General>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <Title Value="NewDb"/>
+      <Title Value="DB"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <Icon Value="0"/>
@@ -41,18 +41,19 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="5">
+    <Units Count="4">
       <Unit0>
-        <Filename Value="NewDb.lpr"/>
+        <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="NewDb"/>
+        <UnitName Value="project1"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="main"/>
+        <UnitName Value="Main"/>
       </Unit1>
       <Unit2>
         <Filename Value="metadata.pas"/>
@@ -60,26 +61,17 @@
         <UnitName Value="metadata"/>
       </Unit2>
       <Unit3>
-        <Filename Value="sqlcomponents.pas"/>
+        <Filename Value="formforhandbooks.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="DataModule1"/>
-        <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="SqlComponents"/>
+        <UnitName Value="FormForHandbooks"/>
       </Unit3>
-      <Unit4>
-        <Filename Value="ucatalogs.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="Catalog"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="UCatalogs"/>
-      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="NewDb"/>
+      <Filename Value="project1"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
