@@ -1,12 +1,12 @@
 object Catalog: TCatalog
-  Left = 297
+  Left = 495
   Height = 477
-  Top = 21
+  Top = 302
   Width = 829
   Caption = 'Catalog'
-  ClientHeight = 0
-  ClientWidth = 0
-  LCLVersion = '1.0.1.3'
+  ClientHeight = 477
+  ClientWidth = 829
+  LCLVersion = '1.2.2.0'
   object ScrollBox1: TScrollBox
     AnchorSideLeft.Control = DBGrid1
     AnchorSideLeft.Side = asrBottom
@@ -127,7 +127,7 @@ object Catalog: TCatalog
     left = 552
     top = 192
   end
-  object Datasource: TDatasource
+  object Datasource: TDataSource
     DataSet = SQLQuery
     left = 616
     top = 192

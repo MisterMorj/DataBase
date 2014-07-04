@@ -35,7 +35,6 @@ type
     procedure RemoveItemClick(Sender: TObject);
     constructor Create(Sender: TComponent; Ind: integer);
   private
-
     FlagAdd: boolean;
     Tags: array of integer;
     LastPar: string;

@@ -1,13 +1,13 @@
 object FShedule: TFShedule
-  Left = 475
+  Left = 537
   Height = 500
-  Top = 96
+  Top = 72
   Width = 657
   Caption = 'FShedule'
   ClientHeight = 500
   ClientWidth = 657
   OnCreate = FormCreate
-  LCLVersion = '1.0.1.3'
+  LCLVersion = '1.2.2.0'
   object Panel1: TPanel
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Owner
@@ -29,23 +29,23 @@ object FShedule: TFShedule
       OnClick = ApplyClick
       TabOrder = 0
     end
-    object Label1: TLabel
+    object AxisXName: TLabel
       Left = 33
-      Height = 16
+      Height = 15
       Top = 72
-      Width = 80
+      Width = 79
       Caption = 'Поле по оси Х'
       ParentColor = False
     end
-    object Label2: TLabel
+    object AxisYName: TLabel
       Left = 193
-      Height = 16
+      Height = 15
       Top = 72
-      Width = 80
+      Width = 79
       Caption = 'Поле по оси У'
       ParentColor = False
     end
-    object AxisX: TComboBox
+    object AxisXCB: TComboBox
       Left = 1
       Height = 23
       Top = 48
@@ -54,7 +54,7 @@ object FShedule: TFShedule
       Style = csDropDownList
       TabOrder = 1
     end
-    object AxisY: TComboBox
+    object AxisYCB: TComboBox
       Left = 156
       Height = 23
       Top = 48
@@ -65,7 +65,7 @@ object FShedule: TFShedule
     end
   end
   object OutputField: TCheckGroup
-    AnchorSideLeft.Control = DrawGrid1
+    AnchorSideLeft.Control = DG
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Panel1
     AnchorSideTop.Side = asrBottom
@@ -90,7 +90,7 @@ object FShedule: TFShedule
     ChildSizing.ControlsPerLine = 1
     TabOrder = 1
   end
-  object DrawGrid1: TDrawGrid
+  object DG: TDrawGrid
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Panel1
@@ -100,21 +100,24 @@ object FShedule: TFShedule
     Height = 500
     Top = 0
     Width = 354
+    AlternateColor = clGradientInactiveCaption
     Anchors = [akTop, akLeft, akRight, akBottom]
+    Color = clWhite
     ColCount = 0
     DefaultRowHeight = 24
     ExtendedSelect = False
-    FixedColor = clBtnShadow
+    FixedColor = cl3DLight
     FixedCols = 0
     FixedRows = 0
-    Options = [goFixedVertLine, goVertLine, goHorzLine, goThumbTracking, goSmoothScroll, goDontScrollPartCell]
+    Options = [goFixedVertLine, goVertLine, goHorzLine, goRowSizing, goColSizing, goThumbTracking, goSmoothScroll, goDontScrollPartCell]
     RowCount = 0
     TabOrder = 2
-    OnDrawCell = DrawGrid1DrawCell
-    OnSelectCell = DrawGrid1SelectCell
+    OnDrawCell = DGDrawCell
+    OnMouseDown = DGMouseDown
+    OnMouseMove = DGMouseMove
   end
   object Panel2: TPanel
-    AnchorSideLeft.Control = DrawGrid1
+    AnchorSideLeft.Control = DG
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = OutputField
     AnchorSideTop.Side = asrBottom
@@ -141,7 +144,7 @@ object FShedule: TFShedule
     end
   end
   object ScrollBox1: TScrollBox
-    AnchorSideLeft.Control = DrawGrid1
+    AnchorSideLeft.Control = DG
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Panel2
     AnchorSideTop.Side = asrBottom
@@ -166,15 +169,15 @@ object FShedule: TFShedule
     left = 120
     top = 128
   end
-  object Datasource1: TDatasource
+  object Datasource1: TDataSource
     DataSet = SQLQuery1
     left = 192
     top = 128
   end
-  object Timer1: TTimer
+  object TimerExtension: TTimer
     Enabled = False
-    Interval = 1
-    OnTimer = Timer1Timer
+    Interval = 20
+    OnTimer = TimerExtensionTimer
     left = 560
     top = 152
   end
@@ -312,5 +315,12 @@ object FShedule: TFShedule
       00FF000000FF000000FF000000FF000000FF000000FF000000FF080808FF2323
       23FF7E7E7EFFF6F6F6FFFFFFFFFF
     }
+  end
+  object TimerCollapsing: TTimer
+    Enabled = False
+    Interval = 20
+    OnTimer = TimerCollapsingTimer
+    left = 464
+    top = 152
   end
 end

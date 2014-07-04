@@ -1,7 +1,7 @@
 object FormEdit: TFormEdit
-  Left = 401
+  Left = 864
   Height = 401
-  Top = 84
+  Top = 191
   Width = 368
   BorderStyle = bsToolWindow
   Caption = 'FormEdit'
@@ -64,15 +64,15 @@ object FormEdit: TFormEdit
     Database = DataModule1.IBConnection1
     Transaction = DataModule1.SQLTransaction1
     Params = <>
-    left = 96
-    top = 56
+    left = 40
+    top = 120
   end
   object Datasource1: TDatasource
     DataSet = SQLQuery
     left = 165
     top = 56
   end
-  object SQLQuery1: TSQLQuery
+  object SQLQueryNew: TSQLQuery
     FieldDefs = <>
     Database = DataModule1.IBConnection1
     Transaction = DataModule1.SQLTransaction1

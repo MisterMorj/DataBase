@@ -25,7 +25,7 @@ type
     Edit: TDBEdit;
     DSVariable: TDataSource;
     SQLQueryVariable: TSQLQuery;
-    constructor Create(Form: TFormEdit; Table: TTableInfo; Num, ID: integer);
+    constructor Create(Form: TFormEdit; ATable: TTableInfo; Num, ID: integer);
   end;
 
   TProc = procedure(Sender: TObject) of object;
@@ -74,7 +74,7 @@ begin
   Self.ID := ID;
   if ID = -1 then
   begin
-    IdField := MyEditorEdit.Create(Self, Table, 0, 0);
+    IdField := MyEditorEdit.Create(Self, ATable, 0, 0);
     Self.Table := ATable;
   end;
 end;
@@ -120,7 +120,7 @@ procedure TFormEdit.FormCreate(Sender: TObject);
 begin
 end;
 
-constructor MyEditorEdit.Create(Form: TFormEdit; Table: TTableInfo; Num, ID: integer);
+constructor MyEditorEdit.Create(Form: TFormEdit; ATable: TTableInfo; Num, ID: integer);
 begin
   SQLQueryVariable := TSQLQuery.Create(Form.ScrollBox1);
   SQLQueryVariable.Transaction := DataModule1.SQLTransaction1;
@@ -141,12 +141,12 @@ begin
     EtemLabel.Left := 160;
     EtemLabel.Top := 35 * Num + 15;
     EtemLabel.Parent := Form.ScrollBox1;
-    EtemLabel.Caption := Table.Columns[Num].NameRus;
+    EtemLabel.Caption := ATable.Columns[Num].NameRus;
   end;
   Edit.Width := 100;
   Edit.Parent := Form.ScrollBox1;
   Edit.DataSource := DSVariable;
-  Edit.DataField := Table.Columns[Num].NameEng;
+  Edit.DataField := ATable.Columns[Num].NameEng;
 
 end;
 
