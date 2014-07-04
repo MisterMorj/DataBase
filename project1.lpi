@@ -41,7 +41,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="4">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -60,6 +60,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="metadata"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="formforhandbooks.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FormForHandbooks"/>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

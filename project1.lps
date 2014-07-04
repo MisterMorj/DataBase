@@ -4,12 +4,12 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="4">
+    <Units Count="18">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="project1"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="200"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -18,12 +18,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="97"/>
-        <CursorPos X="1" Y="1"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="95"/>
+        <CursorPos X="30" Y="29"/>
+        <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -31,25 +30,266 @@
         <Filename Value="metadata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="metadata"/>
-        <UsageCount Value="20"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="74"/>
+        <CursorPos X="1" Y="87"/>
+        <UsageCount Value="242"/>
+        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
+        <Filename Value="formforhandbooks.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FormForHandbooks"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="193"/>
+        <CursorPos X="25" Y="69"/>
+        <UsageCount Value="64"/>
+        <Loaded Value="True"/>
+      </Unit3>
+      <Unit4>
         <Filename Value="C:\lazarus\lcl\include\menuitem.inc"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="25"/>
-        <CursorPos X="42" Y="80"/>
+        <TopLine Value="67"/>
+        <CursorPos X="1" Y="85"/>
+        <UsageCount Value="9"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1939"/>
+        <CursorPos X="1" Y="1957"/>
+        <UsageCount Value="5"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="C:\lazarus\lcl\include\control.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="3631"/>
+        <CursorPos X="1" Y="3655"/>
+        <UsageCount Value="9"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="C:\lazarus\lcl\include\customcombobox.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="186"/>
+        <CursorPos X="1" Y="204"/>
+        <UsageCount Value="2"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="7237"/>
+        <CursorPos X="1" Y="7255"/>
         <UsageCount Value="10"/>
-      </Unit3>
+      </Unit8>
+      <Unit9>
+        <Filename Value="C:\lazarus\lcl\include\speedbutton.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="100"/>
+        <CursorPos X="1" Y="118"/>
+        <UsageCount Value="7"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="C:\lazarus\lcl\controls.pp"/>
+        <UnitName Value="Controls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2114"/>
+        <CursorPos X="50" Y="2119"/>
+        <UsageCount Value="3"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\objpas\classes\classesh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="367"/>
+        <CursorPos X="48" Y="385"/>
+        <UsageCount Value="1"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="C:\lazarus\lcl\include\winapi.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="594"/>
+        <CursorPos X="1" Y="612"/>
+        <UsageCount Value="1"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="C:\lazarus\fpc\2.6.0\source\rtl\inc\objpash.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="202"/>
+        <CursorPos X="8" Y="187"/>
+        <UsageCount Value="1"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="C:\lazarus\lcl\interfaces\win32\win32proc.pp"/>
+        <UnitName Value="win32proc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="687"/>
+        <CursorPos X="1" Y="705"/>
+        <UsageCount Value="3"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="C:\lazarus\lcl\dbgrids.pas"/>
+        <UnitName Value="DBGrids"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="3396"/>
+        <CursorPos X="1" Y="3414"/>
+        <UsageCount Value="6"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="C:\lazarus\lcl\include\scrollbox.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="31"/>
+        <UsageCount Value="6"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="C:\lazarus\lcl\lclclasses.pp"/>
+        <UnitName Value="LCLClasses"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="113"/>
+        <CursorPos X="1" Y="131"/>
+        <UsageCount Value="6"/>
+      </Unit17>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="1" HistoryIndex="0">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="main.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="214" Column="1" TopLine="206"/>
       </Position1>
+      <Position2>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="216" Column="1" TopLine="206"/>
+      </Position2>
+      <Position3>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="229" Column="1" TopLine="206"/>
+      </Position3>
+      <Position4>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="230" Column="1" TopLine="212"/>
+      </Position4>
+      <Position5>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="231" Column="1" TopLine="212"/>
+      </Position5>
+      <Position6>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="238" Column="1" TopLine="215"/>
+      </Position6>
+      <Position7>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="239" Column="1" TopLine="215"/>
+      </Position7>
+      <Position8>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="240" Column="1" TopLine="215"/>
+      </Position8>
+      <Position9>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="61" Column="17" TopLine="28"/>
+      </Position9>
+      <Position10>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="67" Column="3" TopLine="43"/>
+      </Position10>
+      <Position11>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="57" Column="27" TopLine="39"/>
+      </Position11>
+      <Position12>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="223" Column="1" TopLine="213"/>
+      </Position12>
+      <Position13>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="224" Column="1" TopLine="213"/>
+      </Position13>
+      <Position14>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="225" Column="1" TopLine="216"/>
+      </Position14>
+      <Position15>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="227" Column="1" TopLine="219"/>
+      </Position15>
+      <Position16>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="238" Column="1" TopLine="219"/>
+      </Position16>
+      <Position17>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="239" Column="1" TopLine="219"/>
+      </Position17>
+      <Position18>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="206" Column="1" TopLine="192"/>
+      </Position18>
+      <Position19>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="207" Column="1" TopLine="192"/>
+      </Position19>
+      <Position20>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="208" Column="1" TopLine="192"/>
+      </Position20>
+      <Position21>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="267" Column="51" TopLine="258"/>
+      </Position21>
+      <Position22>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="263" Column="22" TopLine="238"/>
+      </Position22>
+      <Position23>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="40" Column="5" TopLine="22"/>
+      </Position23>
+      <Position24>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="49" Column="3" TopLine="23"/>
+      </Position24>
+      <Position25>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="48" Column="8" TopLine="24"/>
+      </Position25>
+      <Position26>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="49" Column="3" TopLine="32"/>
+      </Position26>
+      <Position27>
+        <Filename Value="main.pas"/>
+        <Caret Line="42" Column="26" TopLine="26"/>
+      </Position27>
+      <Position28>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="183" Column="23" TopLine="162"/>
+      </Position28>
+      <Position29>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="179" Column="33" TopLine="162"/>
+      </Position29>
+      <Position30>
+        <Filename Value="formforhandbooks.pas"/>
+        <Caret Line="183" Column="41" TopLine="163"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
+  <Debugging>
+    <Watches Count="3">
+      <Item1>
+        <Expression Value="TForm1"/>
+      </Item1>
+      <Item2>
+        <Expression Value="TForm2.RemoveFilterOnClick (sender: TObject)"/>
+      </Item2>
+      <Item3>
+        <Expression Value="Filters[(sender as TSpeedButton).Tag].FilterValInt"/>
+      </Item3>
+    </Watches>
+  </Debugging>
   <EditorMacros Count="0"/>
 </CONFIG>

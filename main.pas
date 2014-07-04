@@ -6,15 +6,14 @@ interface
 
 uses
   Classes, SysUtils, IBConnection, sqldb, DB, FileUtil, Forms, Controls,
-  Graphics, Dialogs, DBGrids, StdCtrls, Menus, metadata;
-
+  Graphics, Dialogs, DBGrids, StdCtrls, Menus, Spin, Buttons, metadata, Grids,
+  FormForHandbooks;
 type
 
   { TForm1 }
 
   TForm1 = class(TForm)
     Button1: TButton;
-    //NowUsedTables: TTableInfo;
     Datasource1: TDatasource;
     DBGrid1: TDBGrid;
     IBConnection1: TIBConnection;
@@ -23,13 +22,12 @@ type
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
-    MenuItem4: TMenuItem;
     SQLQuery1: TSQLQuery;
     SQLTransaction1: TSQLTransaction;
     procedure Button1Click(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
-    procedure MenuItem4Click(Sender: TObject);
     procedure MyOnClick(Sender: TObject);
   private
     { private declarations }
@@ -40,68 +38,47 @@ type
 
 
 var
-  Form1: TForm1;
-  Form2: TForm;
-  T: TDBGrid;
-  SQLQuery: TSQLQuery;
-  DataSource: TDataSource;
+  Form1: TForm2;
+  Form2: array of TForm2;
   MenuTable: array of TMenuItem;
 
 implementation
 
 {$R *.lfm}
 
+{Form2}
+
+
 { TForm1 }
+
 
 procedure TForm1.MyOnClick(Sender: TObject);
 var
-  i, j: integer;
+  i, j, TableNum, FormNum: integer;
   s: string;
 begin
-  Form2 := TForm.Create(Form1);
-  Form2.Position := poScreenCenter;
-  Form2.Width := 1000;
-  Form2.Height := 500;
-  Form2.Show;
-  //
-  SQLQuery := TSQLQuery.Create(Form2);
-  SQLQuery.Transaction := SQLTransaction1;
-  DataSource := TDataSource.Create(Form2);
-  DataSource.DataSet := SQLQuery;
-  //
-  SQLQuery.Close;
-  s := 'SELECT ';
-  for i := 0 to High(Table[(Sender as TMenuItem).Tag].Columns) do
-  begin
+  SetLength(Form2, Length(Form2) + 1);
+  FormNum := High(Form2);
+  Form2[FormNum] := TForm2.CreateNew(Form1);
+  Form2[FormNum].Tag := (Sender as TMenuItem).Tag;
 
-    s += Table[(Sender as TMenuItem).Tag].TableNameEng + '.';
-    s += Table[(Sender as TMenuItem).Tag].Columns[i].NameEng;
-    if (i < High(Table[(Sender as TMenuItem).Tag].Columns)) then
-      s += ', ';
-  end;
-  s += ' FROM ';
-  s += Table[(Sender as TMenuItem).Tag].TableNameEng;
-  SQLQuery.SQL.Text := s;
-  SQLQuery.Open;
-  T := TDBGrid.Create(Form2);
-  T.Left := 0;
-  T.Top := 0;
-  T.Width := 1000;
-  T.Height := 500;
-  T.Parent := Form2;
-  T.DataSource := Datasource;//
-  for i := 0 to T.Columns.Count - 1 do
-    for j := 0 to High(Table[(Sender as TMenuItem).Tag].Columns) do
+  for i := 0 to High(Table[Form2[FormNum].Tag].Columns) do
+  begin
+    SetLength(Form2[FormNum].DataToFilter, Length(Form2[FormNum].DataToFilter) + 1);
+    Form2[FormNum].DataToFilter[i] := TDataToFilter.Create;
+    Form2[FormNum].DataToFilter[i].DataType := Table[Form2[FormNum].Tag].Columns[i].DataType;
+    if Table[Form2[FormNum].Tag].Columns[i].Ref <> '' then
     begin
-      s  := Table[(Sender as TMenuItem).Tag].Columns[j].NameEng;
-      if s[1] = '"' then
-        s := Copy(s, 2, Length(s) - 2);
-      if T.Columns.Items[i].FieldName = s then
-      begin
-        T.Columns.Items[i].Title.Caption := Table[(Sender as TMenuItem).Tag].Columns[j].NameRus;
-        T.Columns[i].Width := Table[(Sender as TMenuItem).Tag].Columns[j].Width;
-      end;
+       Form2[FormNum].DataToFilter[i].Column := Table[Form2[FormNum].Tag].Columns[i].RefVal;
+       Form2[FormNum].DataToFilter[i].Table := Table[Form2[FormNum].Tag].Columns[i].Ref;
+    end
+    else
+    begin
+       Form2[FormNum].DataToFilter[i].Column := Table[Form2[FormNum].Tag].Columns[i].NameEng;
+       Form2[FormNum].DataToFilter[i].Table := Table[Form2[FormNum].Tag].TableNameEng;
     end;
+  end;
+  Form2[FormNum].ApplyFilter.OnClick(Form2[FormNum].ApplyFilter);
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -115,36 +92,34 @@ begin
   end;
 end;
 
+procedure TForm1.DBGrid1DblClick(Sender: TObject);
+begin
+  ShowMessage(IntToStr(Datasource1.DataSet.RecNo));
+  ShowMessage(SQLQuery1.FieldByName('Брррр').Value);
+//  SELECT a.ID, a.NAME, a.GROUP_SIZE
+//FROM GROUPS a
+end;
+
+
 procedure TForm1.FormCreate(Sender: TObject);
 var
   i: integer;
 begin
-  //Form2 := TForm1.Create(Memo1);
   Memo1.Text := '';
   SetLength(MenuTable, NumberOfTables);
   for i := 0 to NumberOfTables - 1 do
   begin
-    MenuTable[i] := TMenuItem.Create(MenuItem4);
+    MenuTable[i] := TMenuItem.Create(MenuItem2);
     MenuTable[i].Caption := Table[i].TableNameRus;
     MenuTable[i].Tag := i;
     MenuTable[i].OnClick := @MyOnClick;
-    MenuItem4.Add(MenuTable[i]);
+    MenuItem2.Add(MenuTable[i]);
   end;
 end;
-
 
 procedure TForm1.MenuItem3Click(Sender: TObject);
 begin
   Close;
 end;
-
-procedure TForm1.MenuItem4Click(Sender: TObject);
-begin
-  //T := TDBGrid.Create(Form1);
-  //T := Form1.DBGrid1;
-
-  //T.Top := 100;
-end;
-
 
 end.
