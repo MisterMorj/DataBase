@@ -94,8 +94,8 @@ end;
 
 procedure TForm1.DBGrid1DblClick(Sender: TObject);
 begin
-  ShowMessage(IntToStr(Datasource1.DataSet.RecNo));
-  ShowMessage(SQLQuery1.FieldByName('Брррр').Value);
+  //ShowMessage(IntToStr(Datasource1.DataSet.RecNo));
+  //ShowMessage(SQLQuery1.FieldByName('Брррр').Value);
 //  SELECT a.ID, a.NAME, a.GROUP_SIZE
 //FROM GROUPS a
 end;

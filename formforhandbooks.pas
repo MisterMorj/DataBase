@@ -10,68 +10,70 @@ uses
 
 type
 
-TDataToFilter = class(TObject)
-  Table, Column, DataType: string;
-end;
+  TDataToFilter = class(TObject)
+    Table, Column, DataType: string;
+  end;
 
-TFilter = class(TObject)
-  ColName: TComboBox;
-  cmp: TComboBox;
-  FilterVal: TEdit;
-  FilterValInt: TSpinEdit;
-  DataType: string;
-  TableNumber: integer;
-  procedure OnColumnChange (Sender: TObject);
-  procedure Assign(Filter: TFilter);
-  constructor Create(Ind: integer; Sender: TObject; TableNum: integer);
-end;
+  TForm2 = class;
 
-TForm2 = class(TForm)
-  DS: TDataSource;
-  SQLQuery: TSQLQuery;
-  T: TDBGrid;
-  SQLTr: TSQLTransaction;
-  IBCon: TIBConnection;
-  BCreateNewFilter, ApplyFilter: TButton;
-  CheckBoxApply: TCheckBox;
-  LabelApply: TLabel;
-  ScrollBox: TScrollBox;
-  procedure MyOnDoubleClick (Sender: TObject);
-  procedure SendQuery(s: string);
-  function MakeQuery: string;
-  procedure MyOnResize(Sender: TObject);
-  procedure CreateNewFilter(Sender: TObject);
-  procedure ApplyFilterOnClick(Sender: TObject);
-  procedure RemoveFilterOnClick (Sender: TObject);
-  procedure MyOnTitleClick (Column: TColumn);
-  constructor CreateNew (Sender: TComponent);
-public
-  DataToFilter: array of TDataToFilter;
-private
-  LastPar:  string;
-  FlagSortOrder: boolean;
-  OrderByPar: string;
-  Filters: array of TFilter;
-  BRemoveFilter: array of TSpeedButton;
-end;
+  TFilter = class(TObject)
+    ColName: TComboBox;
+    cmp: TComboBox;
+    FilterVal: TEdit;
+    FilterValInt: TSpinEdit;
+    BRemove: TSpeedButton;
+    DataType: string;
+    TableNumber: integer;
+    procedure OnColumnChange(Sender: TObject);
+    procedure Assign(Filter: TFilter);
+    constructor Create(Ind: integer; Sender: TForm2; TableNum: integer);
+  end;
 
-TFormForEditing = class(TForm)
-public
-  StringEditor: array of TEdit;
-  IntEditor: array of TSpinEdit;
-end;
+  TForm2 = class(TForm)
+    DS: TDataSource;
+    SQLQuery: TSQLQuery;
+    T: TDBGrid;
+    SQLTr: TSQLTransaction;
+    IBCon: TIBConnection;
+    BCreateNewFilter, ApplyFilter: TButton;
+    CheckBoxApply: TCheckBox;
+    LabelApply: TLabel;
+    ScrollBox: TScrollBox;
+    procedure RemoveFilter(Sender: TObject);
+    procedure MyOnDoubleClick(Sender: TObject);
+    procedure SendQuery(s: string);
+    function MakeQuery: string;
+    procedure MyOnResize(Sender: TObject);
+    procedure CreateNewFilter(Sender: TObject);
+    procedure ApplyFilterOnClick(Sender: TObject);
+    procedure MyOnTitleClick(Column: TColumn);
+    constructor CreateNew(Sender: TComponent);
+  public
+    DataToFilter: array of TDataToFilter;
+  private
+    LastPar: string;
+    FlagSortOrder: boolean;
+    OrderByPar: string;
+    Filters: array of TFilter;
+  end;
+
+  TFormForEditing = class(TForm)
+  public
+    StringEditor: array of TEdit;
+    IntEditor: array of TSpinEdit;
+  end;
 
 const
   include: string = 'включает';
 
 implementation
 
-procedure TForm2.MyOnDoubleClick (sender: TObject);
+procedure TForm2.MyOnDoubleClick(Sender: TObject);
 begin
 
 end;
 
-constructor TForm2.CreateNew (Sender: TComponent);
+constructor TForm2.CreateNew(Sender: TComponent);
 begin
   inherited;
   T := TDBGrid.Create(Self);
@@ -94,7 +96,7 @@ begin
   ScrollBox := TScrollBox.Create(Self);
   ScrollBox.Parent := Self;
   ScrollBox.Left := T.Width + 2;
-  ScrollBox.VertScrollBar.Tracking:= true;
+  ScrollBox.VertScrollBar.Tracking := True;
   ScrollBox.Width := 375;
   ScrollBox.Top := CheckBoxApply.Top + CheckBoxApply.Height + 35;
 
@@ -142,17 +144,6 @@ end;
 procedure TFOrm2.CreateNewFilter(Sender: TObject);
 begin
   CheckBoxApply.Checked := False;
-  SetLength(BRemoveFilter, Length(BRemoveFilter) + 1);
-  BRemoveFilter[High(BRemoveFilter)] := TSpeedButton.Create(Self);
-  BRemoveFilter[High(BRemoveFilter)].Height := 23;
-  BRemoveFilter[High(BRemoveFilter)].Width := 23;
-  BRemoveFilter[High(BRemoveFilter)].Top := (High(BRemoveFilter)) * 50 + 10;
-  BRemoveFilter[High(BRemoveFilter)].Parent := ScrollBox;
-  BRemoveFilter[High(BRemoveFilter)].Caption := 'X';
-  BRemoveFilter[High(BRemoveFilter)].Tag := High(BRemoveFilter);
-  BRemoveFilter[High(BRemoveFilter)].OnClick := @Self.RemoveFilterOnClick;
-  BRemoveFilter[High(BRemoveFilter)].Left := 2;
-
   SetLength(Filters, Length(Filters) + 1);
   Filters[High(Filters)] := TFilter.Create(High(Filters), Self, Tag);
   self.OnResize(Sender);
@@ -180,33 +171,33 @@ begin
     FlagSortOrder := False;
   end
   else
-    FlagSortOrder := not(FlagSortOrder);
+    FlagSortOrder := not (FlagSortOrder);
   ApplyFilterOnClick(self);
 end;
 
-procedure TForm2.RemoveFilterOnClick (sender: TObject);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+procedure TForm2.RemoveFilter(Sender: TObject);
 var
   i: integer;
 begin
   CheckBoxApply.Checked := False;
-  for i := (sender as TSpeedButton).Tag to High(Filters) - 1 do
+  for i := (Sender as TSpeedButton).Tag to High(Filters) - 1 do
   begin
     Filters[i].Assign(Filters[i + 1]);
-    BRemoveFilter[i].Tag := i;
+    Filters[i].BRemove.Tag := i;
   end;
-  BRemoveFilter[High(BRemoveFilter)].Destroy;
+  Filters[High(Filters)].BRemove.Destroy;
   Filters[High(Filters)].cmp.Destroy;
   Filters[High(Filters)].ColName.Destroy;
   Filters[High(Filters)].FilterVal.Destroy;
   Filters[High(Filters)].FilterValInt.Destroy;
   Filters[High(Filters)].Destroy;
   SetLength(Filters, Length(Filters) - 1);
-  SetLength(BRemoveFilter, Length(BRemoveFilter) - 1);
 end;
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-procedure TForm2.SendQuery (s: string);
+procedure TForm2.SendQuery(s: string);
 var
   TableWidth: array of integer;
   i: integer;
@@ -249,7 +240,7 @@ begin
       if (OrderByPar = Table[TableNum].Columns[i].NameRus) then
       begin
         OrderByPar := ' ORDER BY ' + Table[TableNum].TableNameEng;
-        OrderByPar += '.' +  Table[TableNum].Columns[i].NameEng;
+        OrderByPar += '.' + Table[TableNum].Columns[i].NameEng;
       end;
     end;
     s += ' as "' + Table[TableNum].Columns[i].NameRus + '"';
@@ -269,7 +260,7 @@ begin
   s += OrderByPar;
   if FlagSortOrder then
     s += ' ' + 'desc';
-  result := s;
+  Result := s;
 end;
 
 procedure TForm2.ApplyFilterOnClick(Sender: TObject);
@@ -312,7 +303,7 @@ end;
 
 {Filter}
 
-procedure TFilter.assign (Filter: TFilter);
+procedure TFilter.Assign(Filter: TFilter);
 begin
   ColName.ItemIndex := Filter.ColName.ItemIndex;
   cmp.ItemIndex := Filter.cmp.ItemIndex;
@@ -324,7 +315,7 @@ begin
   TableNumber := Filter.TableNumber;
 end;
 
-procedure TFilter.OnColumnChange (Sender: TObject);
+procedure TFilter.OnColumnChange(Sender: TObject);
 var
   i, j: integer;
 begin
@@ -334,69 +325,72 @@ begin
       DataType := Table[TableNumber].Columns[i].DataType;
       FilterVal.Visible := False;
       FilterValInt.Visible := False;
+      cmp.Items.Clear;
+      cmp.Items.Add('=');
+      cmp.Items.Add('>');
+      cmp.Items.Add('<');
+      cmp.ItemIndex := 0;
       if DataType = 'Int' then
-      begin
-        FilterValInt.Visible := true;
-        cmp.Items.Clear;
-        cmp.Items.Add('=');
-        cmp.Items.Add('>');
-        cmp.Items.Add('<');
-        cmp.ItemIndex := 0;
-      end
+        FilterValInt.Visible := True
       else
       begin
-        FilterVal.Visible := true;
-        cmp.Items.Clear;
-        cmp.Items.Add('=');
-        cmp.Items.Add('>');
-        cmp.Items.Add('<');
+        FilterVal.Visible := True;
         cmp.Items.Add(include);
-        cmp.ItemIndex := 0;
       end;
     end;
 end;
 
-constructor TFilter.Create(Ind: integer; Sender: TObject; TableNum: integer);
+constructor TFilter.Create(Ind: integer; Sender: TForm2; TableNum: integer);
 var
   i: integer;
 begin
   TableNumber := TableNum;
-  ColName := TComboBox.Create(Sender as TForm2);
+  ColName := TComboBox.Create(Sender);
   ColName.Top := Ind * 50 + 10;
   ColName.Width := 100;
   ColName.Height := 30;
   ColName.Left := 30;
-  ColName.Parent := (Sender as TForm2).ScrollBox;
-  for i := 0 to High(Table[(Sender as TForm2).Tag].Columns) do
-    ColName.Items.Add(Table[(Sender as TForm2).Tag].Columns[i].NameRus);
+  ColName.Parent := (Sender).ScrollBox;
+  for i := 0 to High(Table[(Sender).Tag].Columns) do
+    ColName.Items.Add(Table[(Sender).Tag].Columns[i].NameRus);
   ColName.Style := csDropDownList;
   ColName.ItemIndex := 0;
   ColName.OnChange := @OnColumnChange;
 
-  FilterValInt := TSpinEdit.Create(Sender as TForm2);
+  FilterValInt := TSpinEdit.Create(Sender);
   FilterValInt.Top := Ind * 50 + 10;
   FilterValInt.Width := 100;
   FilterValInt.Height := 30;
-  FilterValInt.Parent := (Sender as TForm2).ScrollBox;
+  FilterValInt.Parent := (Sender).ScrollBox;
   FilterValInt.Visible := False;
   FilterValInt.Left := 240;
 
-  FilterVal := TEdit.Create((Sender as TForm2).ScrollBox);
+  FilterVal := TEdit.Create((Sender).ScrollBox);
   FilterVal.Top := Ind * 50 + 10;
   FilterVal.Width := 100;
   FilterVal.Height := 30;
-  FilterVal.Parent := (Sender as TForm2).ScrollBox;
+  FilterVal.Parent := (Sender).ScrollBox;
   FilterVal.Text := '';
   FilterVal.Left := 240;
 
-  cmp := TComboBox.Create((Sender as TForm2).ScrollBox);
+  cmp := TComboBox.Create((Sender).ScrollBox);
   cmp.Top := Ind * 50 + 10;
   cmp.Width := 60;
   cmp.Height := 30;
-  cmp.Parent := (Sender as TForm2).ScrollBox;
+  cmp.Parent := (Sender).ScrollBox;
   cmp.Style := csDropDownList;
   cmp.Left := 160;
-  Self.OnColumnChange(sender);
+  Self.OnColumnChange(Sender);
+
+  BRemove := TSpeedButton.Create(Sender.ScrollBox);
+  BRemove.Height := 23;
+  BRemove.Width := 23;
+  BRemove.Top := Ind * 50 + 10;
+  BRemove.Parent := Sender.ScrollBox;
+  BRemove.Caption := 'X';
+  BRemove.Tag := Ind;
+  BRemove.OnClick := @Sender.RemoveFilter;
+  BRemove.Left := 2;
 end;
 
 end.
