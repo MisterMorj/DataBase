@@ -6,17 +6,19 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  metadata, UCatalogs;
+  ExtCtrls, metadata, UCatalogs, ScheduleForm;
 
 type
 
-  { TForm1 }
+  { TFMain }
 
-  TForm1 = class(TForm)
+  TFMain = class(TForm)
     MainMenu1: TMainMenu;
     CatalogsMenu: TMenuItem;
+    Schedule: TMenuItem;
     procedure CatalogsMenuClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure ScheduleClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -24,7 +26,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  FMain: TFMain;
   MenuTable: array of TMenuItem;
 
 implementation
@@ -32,23 +34,22 @@ implementation
 {$R *.lfm}
 
 
-{ TForm1 }
+{ TFMain }
 
-procedure TForm1.CatalogsMenuClick(Sender: TObject);
+procedure TFMain.CatalogsMenuClick(Sender: TObject);
 var
   i, j, TableNum, FormNum: integer;
   s: string;
 begin
   SetLength(Catalogs, Length(Catalogs) + 1);
   FormNum := High(Catalogs);
-  Catalogs[FormNum] := TCatalog.Create(Form1);
+  Catalogs[FormNum] := TCatalog.Create(FMain);
   Catalogs[FormNum].Tag := (Sender as TMenuItem).Tag;
   Catalogs[FormNum].Show;
   Catalogs[FormNum].ApplyFilter.Click;
 end;
 
-
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TFMain.FormCreate(Sender: TObject);
 var
   i: integer;
 begin
@@ -61,6 +62,11 @@ begin
     MenuTable[i].OnClick := @CatalogsMenuClick;
     CatalogsMenu.Add(MenuTable[i])
   end;
+end;
+
+procedure TFMain.ScheduleClick(Sender: TObject);
+begin
+  FShedule.Show;
 end;
 
 end.

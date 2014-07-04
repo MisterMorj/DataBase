@@ -1,11 +1,12 @@
 object Catalog: TCatalog
-  Left = 419
+  Left = 219
   Height = 645
-  Top = 664
+  Top = 222
   Width = 829
   Caption = 'Catalog'
-  ClientHeight = 645
-  ClientWidth = 829
+  ClientHeight = 0
+  ClientWidth = 0
+  OnCreate = FormCreate
   LCLVersion = '1.0.1.3'
   object ScrollBox1: TScrollBox
     AnchorSideLeft.Control = DBGrid1
@@ -40,8 +41,8 @@ object Catalog: TCatalog
     ClientWidth = 303
     TabOrder = 1
     object AddFilter: TButton
-      Left = 5
-      Height = 57
+      Left = 4
+      Height = 33
       Top = 0
       Width = 144
       Caption = 'Добавить фильтр'
@@ -50,7 +51,7 @@ object Catalog: TCatalog
     end
     object ApplyFilter: TButton
       Left = 154
-      Height = 57
+      Height = 33
       Top = 0
       Width = 144
       Caption = 'Применить фильтр'
@@ -64,13 +65,14 @@ object Catalog: TCatalog
     AnchorSideRight.Control = ToolPanel
     AnchorSideBottom.Control = Panel2
     Left = 0
-    Height = 563
+    Height = 603
     Top = 0
     Width = 526
     Anchors = [akTop, akLeft, akRight, akBottom]
     Color = clWindow
     Columns = <>
     DataSource = Datasource
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgCancelOnExit, dgDisableDelete, dgDisableInsert]
     TabOrder = 2
     OnDblClick = DBGrid1DblClick
     OnTitleClick = DBGrid1TitleClick
@@ -83,36 +85,36 @@ object Catalog: TCatalog
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 86
-    Top = 563
+    Height = 42
+    Top = 603
     Width = 526
-    Anchors = [akLeft, akRight]
-    ClientHeight = 86
+    Anchors = [akLeft, akRight, akBottom]
+    ClientHeight = 42
     ClientWidth = 526
     TabOrder = 3
     object AddField: TButton
       Left = 8
-      Height = 41
-      Top = 12
-      Width = 184
+      Height = 31
+      Top = 4
+      Width = 144
       Caption = 'Добавить запись'
       OnClick = AddFieldClick
       TabOrder = 0
     end
     object RemoveFilter: TButton
-      Left = 216
-      Height = 41
-      Top = 13
-      Width = 184
+      Left = 160
+      Height = 31
+      Top = 4
+      Width = 144
       Caption = 'Удалить запись'
       OnClick = RemoveFilterClick
       TabOrder = 1
     end
     object Edit: TButton
-      Left = 424
-      Height = 41
-      Top = 13
-      Width = 184
+      Left = 312
+      Height = 31
+      Top = 4
+      Width = 144
       Caption = 'Редактировать запись'
       OnClick = EditClick
       TabOrder = 2

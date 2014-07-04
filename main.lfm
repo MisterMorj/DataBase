@@ -1,9 +1,9 @@
-object Form1: TForm1
-  Left = 1016
-  Height = 240
-  Top = 432
-  Width = 320
-  Caption = 'Form1'
+object FMain: TFMain
+  Left = 480
+  Height = 422
+  Top = 181
+  Width = 690
+  Caption = 'FMain'
   Menu = MainMenu1
   OnCreate = FormCreate
   LCLVersion = '1.0.1.3'
@@ -12,6 +12,10 @@ object Form1: TForm1
     top = 104
     object CatalogsMenu: TMenuItem
       Caption = 'Справочники'
+    end
+    object Schedule: TMenuItem
+      Caption = 'Расписание'
+      OnClick = ScheduleClick
     end
   end
 end
