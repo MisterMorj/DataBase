@@ -1,0 +1,26 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 322
+  HorizontalOffset = 541
+  VerticalOffset = 359
+  Width = 497
+  object IBConnection1: TIBConnection
+    Connected = False
+    LoginPrompt = False
+    DatabaseName = 'C:\database\NEWDB.FDB'
+    KeepConnection = False
+    Password = 'masterkey'
+    Transaction = SQLTransaction1
+    UserName = 'SYSDBA'
+    LogEvents = []
+    left = 104
+    top = 104
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = False
+    Action = caNone
+    Database = IBConnection1
+    left = 216
+    top = 104
+  end
+end
