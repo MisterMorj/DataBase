@@ -39,22 +39,22 @@ type
     Panel1: TPanel;
     ScrollBox1: TScrollBox;
     SQLQuery: TSQLQuery;
-    SQLQuery1: TSQLQuery;
+    SQLQueryNew: TSQLQuery;
     procedure ApplyClick(Sender: TObject);
     procedure CancelClick(Sender: TObject);
-    procedure CreateNewFields(Table: TTableInfo; Num, ID: integer);
-    procedure CreateNewFieldsWithField(Table: TTableInfo; Num, ID: integer);
+    procedure CreateNewFields(ATable: TTableInfo; Num, ID: integer);
+    procedure CreateNewFieldsWithField(ATable: TTableInfo; Num, ID: integer);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    constructor Init(Sender: TComponent; Id: integer; Table: TTableInfo);
+    constructor Init(Sender: TComponent; Id: integer; ATable: TTableInfo);
   private
     { private declarations }
   public
+    ApplyProc: TProc;
     ID: integer;
     Table: TTableInfo;
     IdField: MyEditorEdit;
     Tags: array of integer;
-    ApplyProc: TProc;
   end;
 
 var
@@ -64,35 +64,35 @@ var
 implementation
 
 {$R *.lfm}
-constructor TFormEdit.Init(Sender: TComponent; Id: integer; Table: TTableInfo);
+constructor TFormEdit.Init(Sender: TComponent; Id: integer; ATable: TTableInfo);
 begin
   Create(Sender);
   SQLQuery.Close;
-  SQLQuery.SQL.Text := 'SELECT * FROM ' + Table.TableNameEng +
+  SQLQuery.SQL.Text := 'SELECT * FROM ' + ATable.TableNameEng +
     ' WHERE ' + 'ID = ' + IntToStr(ID);
   SQLQuery.Open;
   Self.ID := ID;
   if ID = -1 then
   begin
     IdField := MyEditorEdit.Create(Self, Table, 0, 0);
-    Self.Table := Table;
+    Self.Table := ATable;
   end;
 end;
 
-procedure TFormEdit.CreateNewFields(Table: TTableInfo; Num, ID: integer);
+procedure TFormEdit.CreateNewFields(ATable: TTableInfo; Num, ID: integer);
 begin
-  MyEditorEdit.Create(Self, Table, Num, ID);
+  MyEditorEdit.Create(Self, ATable, Num, ID);
 end;
 
 procedure TFormEdit.ApplyClick(Sender: TObject);
 begin
   if ID = -1 then
   begin
-    SQLQuery1.Close;
-    SQLQuery1.SQL.Text := 'SELECT NEXT VALUE FOR ' + Table.ObjCounterName +
+    SQLQueryNew.Close;
+    SQLQueryNew.SQL.Text := 'SELECT NEXT VALUE FOR ' + Table.ObjCounterName +
       ' FROM RDB$DATABASE';
-    SQLQuery1.Open;
-    IdField.Edit.Text := IntToStr(SQLQuery1.FieldByName('GEN_ID').AsInteger + 1);
+    SQLQueryNew.Open;
+    IdField.Edit.Text := IntToStr(SQLQueryNew.FieldByName('GEN_ID').AsInteger + 1);
   end;
   SQLQuery.ApplyUpdates;
   DataModule1.SQLTransaction1.Commit;
@@ -106,9 +106,9 @@ begin
   Close;
 end;
 
-procedure TFormEdit.CreateNewFieldsWithField(Table: TTableInfo; Num, ID: integer);
+procedure TFormEdit.CreateNewFieldsWithField(ATable: TTableInfo; Num, ID: integer);
 begin
-  MyEditorCB.Create(Self, Table, Num, ID);
+  MyEditorCB.Create(Self, ATable, Num, ID);
 end;
 
 procedure TFormEdit.FormClose(Sender: TObject; var CloseAction: TCloseAction);

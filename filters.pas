@@ -19,24 +19,36 @@ type
     FilterVal: TCustomEdit;
     BRemove: TSpeedButton;
     DataType: string;
-    TableNumber: integer;
+    Table: TTableInfo;
     procedure OnColumnChange(Sender: TObject);
-    constructor Create(Ind: integer; TableNum: integer; Parent: TWinControl;
+    constructor Create(Ind: integer; ATable: TTableInfo; Parent: TWinControl;
       ProcRemove: TProc);
   end;
 
+  { TArrayFilters }
+
   TArrayFilters = class(TObject)
     Filters: array of TFilter;
-    procedure AddFilter(TableNum: integer; Parent: TWinControl);
+    Parent: TWinControl;
+    Table: TTableInfo;
+    constructor Create (AParent: TWinControl; ATable: TTableInfo);
+    procedure AddFilter;
     procedure RemoveFilter(Sender: TObject);
+    procedure Copy(var ArrayFiltres: TArrayFilters);
   end;
 
 implementation
 
-procedure TArrayFilters.AddFilter(TableNum: integer; Parent: TWinControl);
+constructor TArrayFilters.Create(AParent: TWinControl; ATable: TTableInfo);
+begin
+  Parent := AParent;
+  Table := ATable;
+end;
+
+procedure TArrayFilters.AddFilter;
 begin
   SetLength(Filters, Length(Filters) + 1);
-  Filters[High(Filters)] := TFilter.Create(High(Filters), TableNum,
+  Filters[High(Filters)] := TFilter.Create(High(Filters), Table,
     Parent, @RemoveFilter);
 end;
 
@@ -62,14 +74,26 @@ begin
   SetLength(Filters, Length(Filters) - 1);
 end;
 
-
+procedure TArrayFilters.Copy(var ArrayFiltres: TArrayFilters);
+var
+  i: integer;
+begin
+  for i := 0 to High(Filters) do
+  begin
+    ArrayFiltres.AddFilter;
+    ArrayFiltres.Filters[High(ArrayFiltres.Filters)].ColName.ItemIndex := Filters[i].ColName.ItemIndex;
+    ArrayFiltres.Filters[High(ArrayFiltres.Filters)].OnColumnChange(nil);
+    ArrayFiltres.Filters[High(ArrayFiltres.Filters)].cmp.ItemIndex := Filters[i].cmp.ItemIndex;
+    ArrayFiltres.Filters[High(ArrayFiltres.Filters)].FilterVal.Caption := Filters[i].FilterVal.Caption;
+  end;
+end;
 
 procedure TFilter.OnColumnChange(Sender: TObject);
 var
   i: integer;
 begin
-  for i := 0 to High(Table[TableNumber].Columns) do
-    if Table[TableNumber].Columns[i].NameRus = ColName.Text then
+  for i := 0 to High(Table.Columns) do
+    if Table.Columns[i].NameRus = ColName.Text then
     begin
       FilterVal.Destroy;
       cmp.Items.Clear;
@@ -77,7 +101,7 @@ begin
       cmp.Items.Add('>');
       cmp.Items.Add('<');
       cmp.ItemIndex := 0;
-      if Table[TableNumber].Columns[i].DataType = ftInteger then
+      if Table.Columns[i].DataType = ftInteger then
       begin
         FilterVal := TSpinEdit.Create(NewComp);
         (FilterVal as TSpinEdit).MaxValue := 10000000;
@@ -95,21 +119,21 @@ begin
     end;
 end;
 
-constructor TFilter.Create(Ind: integer; TableNum: integer; Parent: TWinControl;
+constructor TFilter.Create(Ind: integer; ATable: TTableInfo; Parent: TWinControl;
   ProcRemove: TProc);
 var
   i: integer;
 begin
   NewComp := Parent;
-  TableNumber := TableNum;
+  Table := ATable;
   ColName := TComboBox.Create(Parent);
   ColName.Top := Ind * 50 + 10;
   ColName.Width := 100;
   ColName.Height := 30;
   ColName.Left := 30;
   ColName.Parent := Parent;
-  for i := 0 to High(Table[TableNum].Columns) do
-    ColName.Items.Add(Table[TableNum].Columns[i].NameRus);
+  for i := 0 to High(Table.Columns) do
+    ColName.Items.Add(Table.Columns[i].NameRus);
   ColName.Style := csDropDownList;
   ColName.ItemIndex := 0;
   ColName.OnChange := @OnColumnChange;

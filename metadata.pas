@@ -79,7 +79,7 @@ initialization
   AddColumnInLastTables('ID', 'ID', '', '', '', ftInteger, 40);
   AddColumnInLastTables('Ф.И.О', 'NAME', '', '', '', ftString, 150);
 
-  AddTable('Професора - предметы', 'PROFESSORS_SUBJECTS', 'PS_ID');
+  AddTable('Профессора - предметы', 'PROFESSORS_SUBJECTS', 'PS_ID');
   AddColumnInLastTables('ID', 'ID', '', '', '', ftInteger, 40);
   AddColumnInLastTables('Профессор', 'PROFESSOR_ID', 'PROFESSORS', 'ID', 'NAME', ftString, 150);
   AddColumnInLastTables('Предмет', 'SUBJECT_ID', 'SUBJECTS', 'ID', 'NAME', ftString, 400);
@@ -93,7 +93,7 @@ initialization
   AddColumnInLastTables('ID', 'ID', '', '', '', ftInteger, 40);
   AddColumnInLastTables('Предмет', 'SUBJECT_ID', 'SUBJECTS', 'ID', 'NAME', ftString, 400);
   AddColumnInLastTables('Тип лекции', 'SUBJECT_TYPE_ID', 'SUBJECT_TYPES', 'ID', 'NAME', ftString, 100);
-  AddColumnInLastTables('Имя професора', 'PROFESSOR_ID', 'PROFESSORS', 'ID', 'NAME', ftString, 150);
+  AddColumnInLastTables('Имя профессора', 'PROFESSOR_ID', 'PROFESSORS', 'ID', 'NAME', ftString, 150);
   AddColumnInLastTables('Номер пары', 'TIME_INDEX', '', '', '', ftInteger, 70);
   AddColumnInLastTables('День недели', 'DAY_INDEX', 'DAYS', 'ID', 'NAME', ftString, 70);
   AddColumnInLastTables('№ группы', 'GROUP_ID', 'GROUPS', 'ID', 'NAME', ftString, 70);
@@ -113,7 +113,7 @@ initialization
   AddColumnInLastTables('ID', 'ID', '', '', '', ftInteger, 40);
   AddColumnInLastTables('Тип', 'NAME', '', '', '', ftString, 40);
 
-  AddTable('Расписание', 'TIMES', 'Time_Index');
+  AddTable('Пары', 'TIMES', 'Time_Index');
   AddColumnInLastTables('ID', 'ID', '', '', '', ftInteger, 60);
   AddColumnInLastTables('Начало', 'Begin_', '', '', '', ftString, 70);
   AddColumnInLastTables('Конец', 'End_', '', '', '', ftString, 70);

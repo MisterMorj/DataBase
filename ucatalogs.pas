@@ -18,7 +18,7 @@ type
   TCatalog = class(TForm)
     Edit: TButton;
     Datasource: TDatasource;
-    RemoveFilter: TButton;
+    RemoveItem: TButton;
     AddFilter: TButton;
     ApplyFilter: TButton;
     DBGrid1: TDBGrid;
@@ -32,24 +32,32 @@ type
     procedure DBGrid1TitleClick(Column: TColumn);
     procedure EditClick(Sender: TObject);
     procedure AddFilterClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure RemoveFilterClick(Sender: TObject);
+    procedure RemoveItemClick(Sender: TObject);
+    constructor Create(Sender: TComponent; Ind: integer);
   private
+
     FlagAdd: boolean;
     Tags: array of integer;
-    ArrayFilters: TArrayFilters;
     LastPar: string;
     FlagSortOrder: boolean;
     OrderByPar: string;
   public
-
+    ArrayFilters: TArrayFilters;
   end;
+
+procedure AddInCatalogs (Sender: TComponent; Ind: integer);
 
 var
   Catalog: TCatalog;
   Catalogs: array of TCatalog;
 
 implementation
+
+procedure AddInCatalogs (Sender: TComponent; Ind: integer);
+begin
+  SetLength(Catalogs, Length(Catalogs) + 1);
+  Catalogs[High(Catalogs)] := TCatalog.Create(Sender, Ind);
+end;
 
 {$R *.lfm}
 
@@ -64,7 +72,7 @@ begin
     DBGrid1.Columns.Items[i].Width := Table[Tag].Columns[i].Width;
 end;
 
-procedure TCatalog.RemoveFilterClick(Sender: TObject);
+procedure TCatalog.RemoveItemClick(Sender: TObject);
 var
   s: string;
   i: integer;
@@ -75,8 +83,7 @@ begin
       ShowMessage('Невозможно удалить запись во время редактирования!');
       exit;
     end;
-  if MessageDlg('Удалить выбранную запись?',
-    mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+  if MessageDlg('Удалить выбранную запись?', mtConfirmation, [mbYes, mbNo], 0) = mrNo then
     exit;
   s := 'DELETE FROM ' + Table[Tag].TableNameEng + ' WHERE ' +
     Table[Tag].Columns[0].NameEng + ' = ' +
@@ -85,17 +92,23 @@ begin
   SQLQuery.SQL.Text := s;
   SQLQuery.ExecSQL;
   DataModule1.SQLTransaction1.commit;
-  ApplyFilterClick(Table[Tag]);
+  ApplyFilterClick(nil);
 end;
 
 procedure TCatalog.AddFilterClick(Sender: TObject);
 begin
-  ArrayFilters.AddFilter(Tag, ScrollBox1);
+  ArrayFilters.AddFilter;
 end;
 
-procedure TCatalog.FormCreate(Sender: TObject);
+constructor TCatalog.Create(Sender: TComponent; Ind: integer);
+var
+  T: TTableInfo;
 begin
-  ArrayFilters := TArrayFilters.Create;
+  inherited Create(Sender);
+  ArrayFilters := TArrayFilters.Create(ScrollBox1, Table[Ind]);
+  Tag := Ind;
+  Show;
+  ApplyFilter.Click;
 end;
 
 procedure TCatalog.DBGrid1TitleClick(Column: TColumn);
@@ -138,9 +151,8 @@ begin
     EditingForm[High(EditingForm)] := TFormEdit.Init(Self, -1, Table[Tag])
   else
     EditingForm[High(EditingForm)] :=
-      TFormEdit.Init(Self, SQLQuery.FieldByName('ID').Value, Table[Tag]);
+      TFormEdit.Init(Self, SQLQuery.FieldByName(Table[Tag].Columns[0].NameRus).Value, Table[Tag]);
   EditingForm[High(EditingForm)].Show;
-  SQLQuery.Open;
 
   SetLength(Tags, Length(Tags) + 1);
   Tags[High(Tags)] := SQLQuery.FieldByName(Table[Tag].Columns[0].NameRus).Value;
@@ -152,10 +164,10 @@ begin
   for i := 1 to High(Table[Tag].Columns) do
     if Table[Tag].Columns[i].Ref <> '' then
       EditingForm[High(EditingForm)].CreateNewFieldsWithField(Table[Tag],
-        i, SQLQuery.FieldByName('ID').Value)
+        i, SQLQuery.FieldByName(Table[Tag].Columns[0].NameRus).Value)
     else
       EditingForm[High(EditingForm)].CreateNewFields(Table[Tag], i,
-        SQLQuery.FieldByName('ID').Value);
+        SQLQuery.FieldByName(Table[Tag].Columns[0].NameRus).Value);
   FlagAdd := False;
 end;
 

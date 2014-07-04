@@ -1,7 +1,7 @@
 object FMain: TFMain
-  Left = 279
+  Left = 391
   Height = 220
-  Top = 76
+  Top = 155
   Width = 241
   Caption = 'FMain'
   Menu = MainMenu1

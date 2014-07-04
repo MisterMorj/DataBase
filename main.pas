@@ -40,12 +40,7 @@ procedure TFMain.CatalogsMenuClick(Sender: TObject);
 var
   FormNum: integer;
 begin
-  SetLength(Catalogs, Length(Catalogs) + 1);
-  FormNum := High(Catalogs);
-  Catalogs[FormNum] := TCatalog.Create(FMain);
-  Catalogs[FormNum].Tag := (Sender as TMenuItem).Tag;
-  Catalogs[FormNum].Show;
-  Catalogs[FormNum].ApplyFilter.Click;
+  AddInCatalogs(Self, (Sender as TMenuItem).Tag);
 end;
 
 procedure TFMain.FormCreate(Sender: TObject);
