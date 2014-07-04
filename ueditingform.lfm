@@ -1,0 +1,83 @@
+object FormEdit: TFormEdit
+  Left = 67
+  Height = 374
+  Top = 345
+  Width = 1002
+  Caption = 'FormEdit'
+  ClientHeight = 374
+  ClientWidth = 1002
+  OnClose = FormClose
+  OnCreate = FormCreate
+  LCLVersion = '1.0.1.3'
+  object Panel1: TPanel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = ScrollBox1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 0
+    Height = 50
+    Top = 324
+    Width = 1002
+    Anchors = [akLeft, akRight, akBottom]
+    ClientHeight = 50
+    ClientWidth = 1002
+    TabOrder = 0
+    object Apply: TButton
+      Left = 160
+      Height = 49
+      Top = -1
+      Width = 184
+      Caption = 'Принять'
+      OnClick = ApplyClick
+      TabOrder = 0
+    end
+    object Cancel: TButton
+      Left = 424
+      Height = 48
+      Top = 0
+      Width = 184
+      Caption = 'Отмена'
+      OnClick = CancelClick
+      TabOrder = 1
+    end
+  end
+  object ScrollBox1: TScrollBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Panel1
+    Left = 0
+    Height = 324
+    Top = 0
+    Width = 1002
+    HorzScrollBar.Page = 998
+    VertScrollBar.Page = 320
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabOrder = 1
+  end
+  object SQLQuery: TSQLQuery
+    FieldDefs = <>
+    Database = DataModule1.IBConnection1
+    Transaction = DataModule1.SQLTransaction1
+    Params = <>
+    left = 96
+    top = 56
+  end
+  object Datasource1: TDatasource
+    DataSet = SQLQuery
+    left = 165
+    top = 56
+  end
+  object SQLQuery1: TSQLQuery
+    FieldDefs = <>
+    Database = DataModule1.IBConnection1
+    Transaction = DataModule1.SQLTransaction1
+    Params = <>
+    left = 40
+    top = 56
+  end
+end
