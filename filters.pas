@@ -32,6 +32,7 @@ type
     Parent: TWinControl;
     Table: TTableInfo;
     constructor Create (AParent: TWinControl; ATable: TTableInfo);
+    procedure AddFilterWithFixId (ID: integer);
     procedure AddFilter;
     procedure RemoveFilter(Sender: TObject);
     procedure Copy(var ArrayFiltres: TArrayFilters);
@@ -43,6 +44,14 @@ constructor TArrayFilters.Create(AParent: TWinControl; ATable: TTableInfo);
 begin
   Parent := AParent;
   Table := ATable;
+end;
+
+procedure TArrayFilters.AddFilterWithFixId(ID: integer);
+begin
+  AddFilter;
+  Filters[High(Filters)].ColName.ItemIndex := 0;
+  Filters[High(Filters)].cmp.ItemIndex := 0;
+  Filters[High(Filters)].FilterVal.Caption := IntToStr(ID);
 end;
 
 procedure TArrayFilters.AddFilter;

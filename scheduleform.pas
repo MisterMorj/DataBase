@@ -11,34 +11,33 @@ uses
   Ueditingform, Math, Hash;
 
 type
-  TFShedule = class;
+  TFSchedule = class;
   TMyList = array of string;
   { TControlButtons }
 
   TControlButtons = class(TObject)
     s: string;
-    Flag: boolean;
+    FlagF: boolean;
     ID: integer;
     Table: TTableInfo;
-    ProcedureArr: array of TProc;
-    ButtonArr: array of TSpeedButton;
-    Form: TFShedule;
+    Procedures: array of TProc;
+    Buttons: array of TSpeedButton;
+    Form: TFSchedule;
     ImageList: TImageList;
     Row, Col, Count: integer;
-    ArrFilter: TArrayFilters;
+    Filters: TArrayFilters;
     Catalog: Timplementing_catalogs;
-    constructor Create(Sender: TWinControl; AForm: TFShedule; aCol, aRow,
-      aCount: integer);
-    constructor AddOnlyCreate(Sender: TWinControl; AForm: TFShedule; aCol, aRow,
-      aCount: integer);
-    procedure MyClickVeiwItem(Sender: TObject);
+    constructor Create(
+      Sender: TWinControl; AForm: TFSchedule; aCol, aRow, aCount: integer; FlagFreeItem: boolean);
+    procedure MyClickViewItem(Sender: TObject);
     procedure MyClickEditItem(Sender: TObject);
     procedure MyClickDeleteItem(Sender: TObject);
     procedure AddProcedure(Proc: TProc);
-    procedure FixateEd;
+    procedure CreateCatalog(aID: integer);
+    procedure FixEdit;
     destructor Destroy;
   private
-    procedure AddFilterForVeiw(List: TMyList; Ind, LastInd: integer; Sender: TObject);
+    procedure AddFilterForView(List: TMyList; Ind, LastInd: integer; Sender: TObject);
     procedure move(x, y: integer);
     procedure MyClickAddNewItem(Sender: TObject);
     procedure OpenCatalogForm(Sender: TObject);
@@ -46,32 +45,29 @@ type
 
   TConButton = array of TControlButtons;
 
-  { TItemForSchedule }
+  { TScheduleRecord }
 
-  TItemForSchedule = class(TObject)
-    FlagClick: boolean;
-    Item: array of TStringList;
+  TScheduleRecord = class(TObject)
+    FlagClick: boolean;///////////////////////////////////////////////////////////////////////////
+    Items: array of TStringList;
     Id: array of integer;
     ControlButtons: TConButton;
     TotalHeight: integer;
-    procedure Next(NewId: integer; Sender: TComponent; var OneItemHeight: integer);
-    procedure Add(S: string; Sender: TComponent; var OneItemHeight: integer);
+    procedure NextRecord(NewId: integer; Sender: TComponent; var OneItemHeight: integer);
+    procedure AddItem(S: string; Sender: TComponent; var OneItemHeight: integer);
   private
   public
     Count: integer;
   end;
 
+  { TFSchedule }
 
-
-  { TFShedule }
-
-  TFShedule = class(TForm)
+  TFSchedule = class(TForm)
     Apply: TButton;
     addFilter: TButton;
-    Datasource1: TDatasource;
+    Datasource: TDatasource;
     AxisYCB: TComboBox;
     AxisXCB: TComboBox;
-    Image1: TImage;
     ImageList1: TImageList;
     MainMenu1: TMainMenu;
     FileConflict: TMenuItem;
@@ -91,6 +87,7 @@ type
     SQLQuery1: TSQLQuery;
     TimerExtension: TTimer;
     TimerCollapsing: TTimer;
+    procedure AxisCBChange(Sender: TObject);
     procedure DGMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: integer);
     procedure DGMouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
@@ -110,7 +107,6 @@ type
     procedure AxisQuery(RefTable: string; RefColumm: string;
       var List: TMyList; var Count: integer; var SortParam: string);
     procedure DestroyButtons(var CB: TConButton);
-    procedure BAddClick(Sender: TObject);
     procedure move_buttons(cord: TPoint);
   public
     LastXClick, LastYClick: integer;
@@ -121,24 +117,24 @@ type
     BCount, OxIndex, OyIndex: integer;
     SortParamX, SortParamY: string;
     LastColumn, LastRow: integer;
-    VeryLastRow, VeryLastColumn: integer;
+    CollapsingRow, CollapsingColumn: integer;
     FlagApply: boolean;
-    ScheduleArray: array of array of TItemForSchedule;
+    ScheduleData: array of array of TScheduleRecord;
     OXRefTable, OYRefTable, OXRefColumn, OYRefColumn, OxColName, OyColName: string;
     OxCount, OyCount: integer;
     ArrayFilters: TArrayFilters;
     SchTable: TTableInfo;
-    FlagMoveB: boolean;
+    FlagButtonsCreated: boolean;
   end;
 
 var
-  FShedule: TFShedule;
+  FSchedule: TFSchedule;
 
 implementation
 
 const
   ColumnWidths = 250;
-  DistToNextLine = 16;
+  DistToNextLine = 18;
   FirstColumnH = 40;
   NumTable = 5;
   EditButtonSize = 20;
@@ -164,70 +160,69 @@ procedure TControlButtons.move(x, y: integer);
 var
   i: integer;
 begin
-  for i := 0 to High(ButtonArr) do
-    FormatButton(x - 2, y + 2 + EditButtonSize * i, ButtonArr[i]);
+  for i := 0 to High(Buttons) do
+    FormatButton(x - 2, y + 2 + EditButtonSize * i, Buttons[i]);
 end;
 
-constructor TControlButtons.AddOnlyCreate(Sender: TWinControl; AForm: TFShedule; aCol, aRow, aCount: integer);
+procedure TControlButtons.CreateCatalog(aID: integer);
 begin
-  Col := aCol;
-  Row := aRow;
-  Count := aCount;
-  Form := AForm;
-  Table := Form.SchTable;
-  ImageList := Form.ImageList1;
-
-  s := '';
-  Flag := false;
-  ArrFilter := TArrayFilters.Create(Form.ScrollBox2, Table);
-  ArrFilter.AddFilter;
-  ArrFilter.Filters[High(ArrFilter.Filters)].ColName.ItemIndex := 0;
-  ArrFilter.Filters[High(ArrFilter.Filters)].cmp.ItemIndex := 0;
-  ArrFilter.Filters[High(ArrFilter.Filters)].FilterVal.Caption := '-1';
-  Catalog := Timplementing_catalogs.Create(NumTable, @s, @Flag, ArrFilter);
-
-  AddProcedure(@MyClickAddNewItem);
-  SetLength(ButtonArr, Length(ButtonArr) + 1);
-  ButtonArr[0] := TSpeedButton.Create(Sender);
-  ButtonArr[0].Parent := Sender;
-  Form.ImageList1.GetBitmap(3, ButtonArr[0].Glyph);
-  ButtonArr[0].OnClick := ProcedureArr[0];
+  Filters := TArrayFilters.Create(Form.ScrollBox2, Table);
+  Filters.AddFilterWithFixId(aID);
+  FlagF := false;
+  Catalog := Timplementing_catalogs.Create(NumTable, @s, @FlagF, Filters);
 end;
 
-constructor TControlButtons.Create(Sender: TWinControl; AForm: TFShedule; aCol, aRow, aCount: integer);
+constructor TControlButtons.Create(
+  Sender: TWinControl; AForm: TFSchedule; aCol, aRow, aCount: integer; FlagFreeItem: boolean);
 var
-  i: integer;
+  i, j: integer;
+  Hint: string;
+  StrList: TStringList;
 begin
+  Hint := '';
   Col := aCol;
   Row := aRow;
   Count := aCount;
   Form := AForm;
-  ID := Form.ScheduleArray[Col, Row].ID[Count];
+  if not FlagFreeItem then
+    ID := Form.ScheduleData[Col, Row].ID[Count];
+
   Table := Form.SchTable;
   ImageList := Form.ImageList1;
 
   s := '';
-  Flag := false;
-  ArrFilter := TArrayFilters.Create(Form.ScrollBox2, Table);
-  ArrFilter.AddFilter;
-  ArrFilter.Filters[High(ArrFilter.Filters)].ColName.ItemIndex := 0;
-  ArrFilter.Filters[High(ArrFilter.Filters)].cmp.ItemIndex := 0;
-  ArrFilter.Filters[High(ArrFilter.Filters)].FilterVal.Caption := IntToStr(ID);
-
-  Catalog := Timplementing_catalogs.Create(NumTable, @s, @Flag, ArrFilter);
-
-  AddProcedure(@MyClickVeiwItem);
-  AddProcedure(@MyClickEditItem);
-  AddProcedure(@MyClickDeleteItem);
-  AddProcedure(@MyClickAddNewItem);
-  for i := 0 to High(ProcedureArr) do
+  if not FlagFreeItem then
   begin
-    SetLength(ButtonArr, Length(ButtonArr) + 1);
-    ButtonArr[i] := TSpeedButton.Create(Sender);
-    ButtonArr[i].Parent := Sender;
-    Form.ImageList1.GetBitmap(i, ButtonArr[i].Glyph);
-    ButtonArr[i].OnClick := ProcedureArr[i];
+    AddProcedure(@MyClickViewItem);
+    AddProcedure(@MyClickEditItem);
+    AddProcedure(@MyClickDeleteItem);
   end;
+  AddProcedure(@MyClickAddNewItem);
+  if (HKeyConflicts.ReturnVal(ID).InvolvedInConflict) and (not FlagFreeItem) then
+    AddProcedure(nil);
+  for i := 0 to High(Procedures) do
+  begin
+    SetLength(Buttons, Length(Buttons) + 1);
+    Buttons[i] := TSpeedButton.Create(Sender);
+    Buttons[i].Parent := Sender;
+    Form.ImageList1.GetBitmap(i, Buttons[i].Glyph);
+    Buttons[i].OnClick := Procedures[i];
+    if Procedures[i] = nil then
+    begin
+      StrList := TStringList.Create;
+      StrList := HKeyConflicts.ReturnVal(ID).List;
+      for j := 0 to StrList.Count - 1 do
+      begin
+        Hint +=  StrList[j];
+        if j <> StrList.Count - 1 then
+          Hint += #10#13;
+      end;
+      Buttons[i].Hint := Hint;
+      Buttons[i].ShowHint := true;
+    end;
+  end;
+  if FlagFreeItem then
+    Form.ImageList1.GetBitmap(3, Buttons[0].Glyph);
 end;
 
 procedure TControlButtons.OpenCatalogForm(Sender: TObject);
@@ -239,7 +234,7 @@ begin
     EditingForm[i].Close;
 end;
 
-procedure TControlButtons.AddFilterForVeiw(List: TMyList; Ind, LastInd: integer;
+procedure TControlButtons.AddFilterForView(List: TMyList; Ind, LastInd: integer;
   Sender: TObject);
 var
   Filter: TFilter;
@@ -253,25 +248,26 @@ begin
   Filter.FilterVal.Caption := List[LastInd - 1];
 end;
 
-procedure TControlButtons.MyClickVeiwItem(Sender: TObject);
+procedure TControlButtons.MyClickViewItem(Sender: TObject);
 begin
   AddInCatalogs(Form, NumTable);
-  AddFilterForVeiw(Form.OxList, Form.OxIndex, Col, Sender);
-  AddFilterForVeiw(Form.OyList, Form.OyIndex, Row, Sender);
+  AddFilterForView(Form.OxList, Form.OxIndex, Col, Sender);
+  AddFilterForView(Form.OyList, Form.OyIndex, Row, Sender);
   Form.ArrayFilters.Copy(Catalogs[High(Catalogs)].ArrayFilters);
   Catalogs[High(Catalogs)].ApplyFilter.Click;
 end;
 
 procedure TControlButtons.MyClickEditItem(Sender: TObject);
 begin
+  CreateCatalog(ID);///////////////////////////////////////////////////////////
   OpenCatalogForm(Form);
   Catalog.AddField(False);
   EditingForm[High(EditingForm)].ApplyProc := @Form.ApplyClick;
-  FixateEd;
 end;
 
 procedure TControlButtons.MyClickDeleteItem(Sender: TObject);
 begin
+  CreateCatalog(ID);
   OpenCatalogForm(Sender);
   Catalog.RemoveItem;
   Form.Apply.Click;
@@ -279,19 +275,20 @@ end;
 
 procedure TControlButtons.MyClickAddNewItem(Sender: TObject);
 begin
+  CreateCatalog(-1);
   OpenCatalogForm(Form);
   Catalog.AddField(true);
   EditingForm[High(EditingForm)].ApplyProc := @Form.ApplyClick;
-  FixateEd;
+  FixEdit;
 end;
 
 procedure TControlButtons.AddProcedure(Proc: TProc);
 begin
-  SetLength(ProcedureArr, length(ProcedureArr) + 1);
-  ProcedureArr[High(ProcedureArr)] := Proc;
+  SetLength(Procedures, length(Procedures) + 1);
+  Procedures[High(Procedures)] := Proc;
 end;
 
-procedure TControlButtons.FixateEd;
+procedure TControlButtons.FixEdit;
 begin
   EditingForm[High(EditingForm)].FixVal(Form.OxIndex, IntToStr(Col));
   EditingForm[High(EditingForm)].FixVal(Form.OyIndex, IntToStr(Row));
@@ -301,58 +298,49 @@ destructor TControlButtons.Destroy;
 var
   i: integer;
 begin
-  for i := 0 to High(ButtonArr) do
-    ButtonArr[i].Destroy;
+  for i := 0 to High(Buttons) do
+    Buttons[i].Destroy;
 end;
 
 { ItemForSchedule }
-procedure TItemForSchedule.Next(NewId: integer; Sender: TComponent;
+procedure TScheduleRecord.NextRecord(NewId: integer; Sender: TComponent;
   var OneItemHeight: integer);
 begin
   Inc(Count);
-  SetLength(Item, Count);
+  SetLength(Items, Count);
   SetLength(Id, Count);
-  Item[Count - 1] := TStringList.Create;
+  Items[Count - 1] := TStringList.Create;
   Id[Count - 1] := NewId;
   TotalHeight := OneItemHeight * Count;
 end;
 
-procedure TItemForSchedule.Add(S: string; Sender: TComponent;
+procedure TScheduleRecord.AddItem(S: string; Sender: TComponent;
   var OneItemHeight: integer);
 begin
   if Count = 0 then
-    Next(-1, Sender, OneItemHeight);
-  Item[High(Item)].Add(S);
-  OneItemHeight := max(Item[High(Item)].Count * DistToNextLine, OneItemHeight);
+    NextRecord(-1, Sender, OneItemHeight);
+  Items[High(Items)].Add(S);
+  OneItemHeight := max(Items[High(Items)].Count * DistToNextLine, OneItemHeight);
 end;
 
 {$R *.lfm}
 
-{ TFShedule }
-
-procedure TFShedule.BAddClick(Sender: TObject);
-begin
-  AddInCatalogs(Sender as TComponent, NumTable);
-  Catalogs[High(Catalogs)].ApplyFilter.Click;
-  Catalogs[High(Catalogs)].Close;
-  Catalogs[High(Catalogs)].AddFieldClick(nil);
-  EditingForm[High(Catalogs)].ApplyProc := @FShedule.ApplyClick;
-end;
-
-procedure TFShedule.DestroyButtons(var CB: TConButton);
+{ TFSchedule }
+procedure TFSchedule.DestroyButtons(var CB: TConButton);
 var
   i: integer;
 begin
+  if not FlagApply then
+    exit;
   for i := 0 to High(CB) do
     CB[i].Destroy;
   SetLength(CB, 0);
 end;
 
-procedure TFShedule.FormCreate(Sender: TObject);
+procedure TFSchedule.FormCreate(Sender: TObject);
 var
   i: integer;
 begin
-
   SchTable := Table[NumTable];
   ArrayFilters := TArrayFilters.Create(ScrollBox1, SchTable);
   for i := 1 to High(SchTable.Columns) do
@@ -363,17 +351,23 @@ begin
     AxisYCB.ItemIndex := 3;
     OutputField.Items.Add(SchTable.Columns[i].NameRus);
     OutputField.Checked[i - 1] := True;
+    AxisCBChange(AxisXCB);
   end;
   FlagApply := False;
-  AddFormatInSaveDialog(FShedule.SaveDialog1);
+  AddFormatInSaveDialog(FSchedule.SaveDialog1);
 end;
 
-procedure TFShedule.FileConflictClick(Sender: TObject);
+procedure TFSchedule.FileConflictClick(Sender: TObject);
 begin
+  if not FlagApply then
+  begin
+    ShowMessage('Задайте расписание для вывода конфликтов!');
+    exit;
+  end;
   FConflict.Show;
 end;
 
-procedure TFShedule.FileSaveClick(Sender: TObject);
+procedure TFSchedule.FileSaveClick(Sender: TObject);
 var
   i, j, q: integer;
   DataToSave: TSaveClass;
@@ -381,7 +375,7 @@ var
 begin
   if not FlagApply then
   begin
-    ShowMessage('Задайте таблицу для сохранения');
+    ShowMessage('Задайте расписание для сохранения!');
     exit;
   end;
   SaveDialog1.Execute;
@@ -390,10 +384,10 @@ begin
   begin
     SetLength(DataToSave[i], OxCount + 1);
     for j := 0 to OxCount do
-      for q := 0 to High(ScheduleArray[j, i].Item) do
+      for q := 0 to High(ScheduleData[j, i].Items) do
       begin
         SetLength(DataToSave[i, j], q + 1);
-        DataToSave[i, j, q] := ScheduleArray[j, i].Item[q];
+        DataToSave[i, j, q] := ScheduleData[j, i].Items[q];
       end;
   end;
   HeaderList := TStringList.Create;
@@ -410,12 +404,12 @@ begin
     OxColName, OyColName, HeaderList, FiltersList);
 end;
 
-procedure TFShedule.FileCloseClick(Sender: TObject);
+procedure TFSchedule.FileCloseClick(Sender: TObject);
 begin
   Close;
 end;
 
-function ReturnCof(x, y: double): double;
+function ReturnCof(x, y: double): double; //easing
 begin
   if (y = 0) then
     Result := 0.2
@@ -423,7 +417,7 @@ begin
     Result := sin(pi * (x / y)) * 2 + 0.3;
 end;
 
-procedure TFShedule.DGMouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
+procedure TFSchedule.DGMouseMove(Sender: TObject; Shift: TShiftState; X, Y: integer);
 var
   Cord: TPoint;
   Rect: TRect;
@@ -435,34 +429,34 @@ begin
   if (Cord.x <> MouseMovePoint.x) or (Cord.y <> MouseMovePoint.y) then
   begin
     DG.Invalidate;
-    if FlagMoveB then
+    if FlagButtonsCreated then
     begin
-      FlagMoveB := false;
-      DestroyButtons(ScheduleArray[MouseMovePoint.x, MouseMovePoint.y].ControlButtons);
+      FlagButtonsCreated := false;
+      DestroyButtons(ScheduleData[MouseMovePoint.x, MouseMovePoint.y].ControlButtons);
     end;
 
-    if (ScheduleArray[Cord.x, Cord.y].FlagClick) or (Cord.x * Cord.y = 0) then
+    if (ScheduleData[Cord.x, Cord.y].FlagClick) or (Cord.x * Cord.y = 0) then
       exit;
 
-    FlagMoveB := true;
-    for i := 0 to min(DG.RowHeights[Cord.y] div OneItemHeight - 1, ScheduleArray[Cord.x, Cord.y].Count - 1) do
+    FlagButtonsCreated := true;
+    for i := 0 to min(DG.RowHeights[Cord.y] div OneItemHeight - 1, ScheduleData[Cord.x, Cord.y].Count - 1) do
     begin
-      SetLength(ScheduleArray[Cord.x, Cord.y].ControlButtons, i + 1);
-      ScheduleArray[Cord.x, Cord.y].ControlButtons[i] :=
-        TControlButtons.Create(DG, FShedule, Cord.x, Cord.y, i);
+      SetLength(ScheduleData[Cord.x, Cord.y].ControlButtons, i + 1);
+      ScheduleData[Cord.x, Cord.y].ControlButtons[i] :=
+        TControlButtons.Create(DG, FSchedule, Cord.x, Cord.y, i, false);
     end;
 
-    if (ScheduleArray[Cord.x, Cord.y].Count = 0) then
+    if (ScheduleData[Cord.x, Cord.y].Count = 0) then
     begin
-      SetLength(ScheduleArray[Cord.x, Cord.y].ControlButtons, 1);
-      ScheduleArray[Cord.x, Cord.y].ControlButtons[i] :=
-        TControlButtons.AddOnlyCreate(DG, FShedule, Cord.x, Cord.y, 0);
+      SetLength(ScheduleData[Cord.x, Cord.y].ControlButtons, 1);
+      ScheduleData[Cord.x, Cord.y].ControlButtons[i] :=
+        TControlButtons.Create(DG, FSchedule, Cord.x, Cord.y, 0, true);
     end;
   end;
   MouseMovePoint := Cord;
-  if (ScheduleArray[Cord.x, Cord.y].FlagClick) or (Cord.x * Cord.y = 0) then
+  if (ScheduleData[Cord.x, Cord.y].FlagClick) or (Cord.x * Cord.y = 0) then
     exit;
-  if ScheduleArray[Cord.x, Cord.y].Count * OneItemHeight > DG.RowHeights[Cord.y] then
+  if ScheduleData[Cord.x, Cord.y].Count * OneItemHeight > DG.RowHeights[Cord.y] then
     DG.Canvas.Pen.Color := clRed
   else
     DG.Canvas.Pen.Color := clBlue;
@@ -478,65 +472,80 @@ begin
   DG.Canvas.Pen.Width := 1;
 end;
 
-procedure TFShedule.DGMouseDown(Sender: TObject; Button: TMouseButton;
+procedure TFSchedule.DGMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: integer);
 var
   Cord: TPoint;
 begin
+  if not FlagApply then
+    exit;
   Cord := DG.MouseToCell(Point(X, Y));
-  if (ScheduleArray[Cord.x, Cord.y].Count = 0) or (Cord.x * Cord.y = 0) then
+  if (ScheduleData[Cord.x, Cord.y].Count = 0) or (Cord.x * Cord.y = 0) then
     exit;
   BCount := 0;
   if LastRow > 0 then
   begin
-    DestroyButtons(ScheduleArray[LastColumn, LastRow].ControlButtons);
-    VeryLastColumn := LastColumn;
-    VeryLastRow := LastRow;
-    TimerCollapsing.Enabled := ScheduleArray[VeryLastColumn, VeryLastRow].FlagClick;
+    DestroyButtons(ScheduleData[LastColumn, LastRow].ControlButtons);
+    CollapsingColumn := LastColumn;
+    CollapsingRow := LastRow;
+    TimerCollapsing.Enabled := ScheduleData[CollapsingColumn, CollapsingRow].FlagClick;
     if (LastRow <> Cord.y) or (LastColumn <> Cord.x) then
-      ScheduleArray[LastColumn, LastRow].FlagClick := False;
+      ScheduleData[LastColumn, LastRow].FlagClick := False;
   end;
-  ScheduleArray[Cord.x, Cord.y].FlagClick := not ScheduleArray[Cord.x, Cord.y].FlagClick;
-  DestroyButtons(ScheduleArray[MouseMovePoint.x, MouseMovePoint.y].ControlButtons);
-  TimerExtension.Enabled := ScheduleArray[Cord.x, Cord.y].FlagClick and not
+  ScheduleData[Cord.x, Cord.y].FlagClick := not ScheduleData[Cord.x, Cord.y].FlagClick;
+  DestroyButtons(ScheduleData[MouseMovePoint.x, MouseMovePoint.y].ControlButtons);
+  TimerExtension.Enabled := ScheduleData[Cord.x, Cord.y].FlagClick and not
     (TimerCollapsing.Enabled);
-  if ScheduleArray[Cord.x, Cord.y].FlagClick then
+  if ScheduleData[Cord.x, Cord.y].FlagClick then
   begin
     LastColumn := Cord.x;
     LastRow := Cord.y;
   end;
-  FlagMoveB := false;
+  FlagButtonsCreated := false;
 end;
 
-procedure TFShedule.TimerExtensionTimer(Sender: TObject);
+procedure TFSchedule.AxisCBChange(Sender: TObject);
+var
+  i: integer;
+begin
+  for i := 0 to OutputField.Items.Count - 1 do
+    if (OutputField.Items[i] = AxisXCB.Caption) or (OutputField.Items[i] = AxisYCB.Caption) then
+      OutputField.Checked[i] := False
+    else
+      OutputField.Checked[i] := true;
+end;
+
+
+
+procedure TFSchedule.TimerExtensionTimer(Sender: TObject);
 var
   Cof: double;
 begin
   DG.Enabled := False;
   if (BCount < DG.RowHeights[LastRow] div OneItemHeight) and
-    (ScheduleArray[LastColumn, LastRow].Count > 0) then
+    (ScheduleData[LastColumn, LastRow].Count > 0) then
   begin
     BCount := DG.RowHeights[LastRow] div OneItemHeight;
-    SetLength(ScheduleArray[LastColumn, LastRow].ControlButtons, BCount);
-    ScheduleArray[LastColumn, LastRow].ControlButtons[BCount - 1] :=
-      TControlButtons.Create(DG, FShedule, LastColumn, LastRow, BCount - 1);
+    SetLength(ScheduleData[LastColumn, LastRow].ControlButtons, BCount);
+    ScheduleData[LastColumn, LastRow].ControlButtons[BCount - 1] :=
+      TControlButtons.Create(DG, FSchedule, LastColumn, LastRow, BCount - 1, false);
   end;
-  if (DG.RowHeights[LastRow] < ScheduleArray[LastColumn, LastRow].TotalHeight) then
+  if (DG.RowHeights[LastRow] < ScheduleData[LastColumn, LastRow].TotalHeight) then
   begin
-    Cof := ReturnCof(DG.RowHeights[LastRow], ScheduleArray[LastColumn,
+    Cof := ReturnCof(DG.RowHeights[LastRow], ScheduleData[LastColumn,
       LastRow].TotalHeight);
     DG.RowHeights[LastRow] := DG.RowHeights[LastRow] + Round(DistToNextLine * Cof);
   end
   else
   begin
-    DG.RowHeights[LastRow] := max(ScheduleArray[LastColumn, LastRow].TotalHeight,
+    DG.RowHeights[LastRow] := max(ScheduleData[LastColumn, LastRow].TotalHeight,
       OneItemHeight);
     TimerExtension.Enabled := False;
     DG.Enabled := True;
   end;
 end;
 
-procedure TFShedule.TimerCollapsingTimer(Sender: TObject);
+procedure TFSchedule.TimerCollapsingTimer(Sender: TObject);
 var
   APoint: TPoint;
   Cof: double;
@@ -544,18 +553,18 @@ var
   aRect: TRect;
 begin
   DG.Enabled := False;
-  if (DG.RowHeights[VeryLastRow] > OneItemHeight) then
+  if (DG.RowHeights[CollapsingRow] > OneItemHeight) then
   begin
-    Cof := ReturnCof(DG.RowHeights[VeryLastRow],
-      ScheduleArray[VeryLastColumn, VeryLastRow].TotalHeight);
-    DG.RowHeights[VeryLastRow] :=
-      DG.RowHeights[VeryLastRow] - Round(DistToNextLine * Cof);
+    Cof := ReturnCof(DG.RowHeights[CollapsingRow],
+      ScheduleData[CollapsingColumn, CollapsingRow].TotalHeight);
+    DG.RowHeights[CollapsingRow] :=
+      DG.RowHeights[CollapsingRow] - Round(DistToNextLine * Cof);
   end
   else
   begin
-    DG.RowHeights[VeryLastRow] := OneItemHeight;
+    DG.RowHeights[CollapsingRow] := OneItemHeight;
     TimerCollapsing.Enabled := False;
-    if (LastColumn <> VeryLastColumn) or (LastRow <> VeryLastRow) then
+    if (LastColumn <> CollapsingColumn) or (LastRow <> CollapsingRow) then
       TimerExtension.Enabled := True
     else
     begin
@@ -570,12 +579,12 @@ begin
   end;
 end;
 
-procedure TFShedule.addFilterClick(Sender: TObject);
+procedure TFSchedule.addFilterClick(Sender: TObject);
 begin
   ArrayFilters.AddFilter;
 end;
 
-procedure TFShedule.FindRefAndColumn(Axis: TComboBox; var RefTable: string;
+procedure TFSchedule.FindRefAndColumn(Axis: TComboBox; var RefTable: string;
   var RefColumn: string; var RusColName: string; ind: integer);
 begin
   if SchTable.Columns[ind].NameRus = Axis.Caption then
@@ -585,7 +594,7 @@ begin
   end;
 end;
 
-procedure TFShedule.AxisQuery(RefTable: string; RefColumm: string;
+procedure TFSchedule.AxisQuery(RefTable: string; RefColumm: string;
   var List: TMyList; var Count: integer; var SortParam: string);
 var
   LastStr: string;
@@ -610,7 +619,7 @@ begin
   end;
 end;
 
-procedure TFShedule.ApplyClick(Sender: TObject);
+procedure TFSchedule.ApplyClick(Sender: TObject);
 var
   i, j, q, counter: integer;
   MainQuery, OrderByVal: string;
@@ -620,23 +629,26 @@ begin
   OneItemHeight := DistToNextLine * 6;
   if FlagApply then
   begin
-    for i := 0 to High(ScheduleArray) do
-      for j := 0 to High(ScheduleArray[i]) do
+    for i := 0 to High(ScheduleData) do
+      for j := 0 to High(ScheduleData[i]) do
       begin
         if (i > 0) and (j > 0) then
-          for q := 0 to High(ScheduleArray[i, j].id) do
-            HConflict.Remove(ScheduleArray[i, j].id[q]);
+          for q := 0 to High(ScheduleData[i, j].id) do
+          begin
+            HAllItems.Remove(ScheduleData[i, j].id[q]);
+            HKeyConflicts.Remove(ScheduleData[i, j].id[q]);
+          end;
         if (Sender <> nil) then
-          DestroyButtons(ScheduleArray[i, j].ControlButtons)
+          DestroyButtons(ScheduleData[i, j].ControlButtons)
         else
         begin
           SetLength(BForDest, Length(BForDest) + 1);
-          BForDest[High(BForDest)] := ScheduleArray[i, j].ControlButtons;
+          BForDest[High(BForDest)] := ScheduleData[i, j].ControlButtons;
         end;
       end;
     for i := 0 to OxCount do
       for j := 0 to OyCount do
-        ScheduleArray[i][j].Destroy;
+        ScheduleData[i][j].Destroy;
   end;
   OxCount := 0;
   OyCount := 0;
@@ -651,18 +663,18 @@ begin
   AxisQuery(OXRefTable, OXRefColumn, OxList, OxCount, SortParamX);
   AxisQuery(OYRefTable, OYRefColumn, OyList, OyCount, SortParamY);
 
-  SetLength(ScheduleArray, OxCount + 1);
+  SetLength(ScheduleData, OxCount + 1);
   for i := 0 to OxCount do
-    SetLength(ScheduleArray[i], OyCount + 1);
+    SetLength(ScheduleData[i], OyCount + 1);
 
   for i := 0 to OxCount do
     for j := 0 to OyCount do
     begin
-      ScheduleArray[i, j] := TItemForSchedule.Create;
+      ScheduleData[i, j] := TScheduleRecord.Create;
       if (i = 0) and (j <> 0) then
-        ScheduleArray[i, j].Add(OyList[j - 1], Self, OneItemHeight);
+        ScheduleData[i, j].AddItem(OyList[j - 1], Self, OneItemHeight);
       if (i <> 0) and (j = 0) then
-        ScheduleArray[i, j].Add(OxList[i - 1], Self, OneItemHeight);
+        ScheduleData[i, j].AddItem(OxList[i - 1], Self, OneItemHeight);
     end;
 
   DG.ColCount := OxCount + 1;
@@ -684,9 +696,6 @@ begin
     DG.ColWidths[i] := ColumnWidths;
   DG.RowHeights[0] := FirstColumnH;
 
-  for i := 0 to OutputField.Items.Count - 1 do
-    if (OutputField.Items[i] = OxColName) or (OutputField.Items[i] = OyColName) then
-      OutputField.Checked[i] := False;
   HashItem.List := TStringList.Create;
   for i := 0 to OxCount - 1 do
   begin
@@ -696,46 +705,49 @@ begin
         (SQLQuery1.FieldByName(OxColName).AsString = OxList[i]) and
         (counter < SQLQuery1.RowsAffected) do
       begin
-        ScheduleArray[i + 1, j + 1].Next(
+        ScheduleData[i + 1, j + 1].NextRecord(
           SQLQuery1.FieldByName(SchTable.Columns[0].NameRus).AsInteger,
           Self, OneItemHeight);
         HashItem.ID := SQLQuery1.FieldByName(SchTable.Columns[0].NameRus).AsInteger;
         HashItem.List.Clear;
         for q := 0 to OutputField.Items.Count - 1 do
         begin
+          HashItem.List.Add(SQLQuery1.FieldByName(OutputField.Items[q]).AsString);
           if OutputField.Checked[q] then
           begin
-            HashItem.List.Add(SQLQuery1.FieldByName(OutputField.Items[q]).AsString);
-            ScheduleArray[i + 1, j + 1].Add(OutputField.Items[q] +
+            ScheduleData[i + 1, j + 1].AddItem(OutputField.Items[q] +
               ': ' + SQLQuery1.FieldByName(OutputField.Items[q]).AsString,
               Self, OneItemHeight);
           end;
           if (DG.RowHeights[j + 1] < OneItemHeight) then
             DG.RowHeights[j + 1] := OneItemHeight;
         end;
-        HConflict.Add(HashItem);
+        HAllItems.Add(HashItem);
+        HKeyConflicts.Add(HashItem);
         SQLQuery1.Next;
         Inc(counter);
       end;
     end;
   end;
   DG.Invalidate;
+  FConflict.ProcApply := @Self.ApplyClick;
+  FConflict.FindConflicts;
 end;
 
-procedure TFShedule.move_buttons (cord: TPoint);
+procedure TFSchedule.move_buttons (cord: TPoint);
 var
   Rect: TRect;
   i: integer;
 begin
   Rect := Self.DG.CellRect(cord.x, cord.y);
-  for i := 0 to High(ScheduleArray[cord.x, cord.y].ControlButtons) do
+  for i := 0 to High(ScheduleData[cord.x, cord.y].ControlButtons) do
   begin
-    ScheduleArray[cord.x, cord.y].ControlButtons[i].move
-    (Rect.Right, Rect.Top + i * OneItemHeight);
+    ScheduleData[cord.x, cord.y].ControlButtons[i].move(
+      Rect.Right, Rect.Top + i * OneItemHeight);
   end;
 end;
 
-procedure TFShedule.DGDrawCell(Sender: TObject; aCol, aRow: integer;
+procedure TFSchedule.DGDrawCell(Sender: TObject; aCol, aRow: integer;
   aRect: TRect; aState: TGridDrawState);
 var
   i, j: integer;
@@ -766,12 +778,12 @@ begin
       aRect.Bottom);
   end;
 
-  for i := 0 to ScheduleArray[aCol, aRow].Count - 1 do
+  for i := 0 to ScheduleData[aCol, aRow].Count - 1 do
   begin
-    for j := 0 to ScheduleArray[aCol, aRow].Item[i].Count - 1 do
+    for j := 0 to ScheduleData[aCol, aRow].Items[i].Count - 1 do
     begin
       LocalTop := aRect.Top + j * DistToNextLine + i * OneItemHeight;
-      DG.Canvas.TextOut(aRect.Left + 2, LocalTop, ScheduleArray[aCol, aRow].Item[i][j]);
+      DG.Canvas.TextOut(aRect.Left + 2, LocalTop, ScheduleData[aCol, aRow].Items[i][j]);
     end;
     LineHeight := aRect.Top + OneItemHeight * (i + 1) - 1;
     DG.Canvas.Pen.Color := clBlack;
@@ -780,13 +792,13 @@ begin
     DG.Canvas.Pen.Style := psSolid;
   end;
 
-  if FlagMoveB then
+  if FlagButtonsCreated then
     move_buttons(MouseMovePoint);
   move_buttons(Point(LastColumn, LastRow));
 
   DG.Canvas.Brush.Style := bsClear;
   if (aCol = LastColumn) and (aRow = LastRow) and//Отрисовка рамки для выделеной ячейки
-    ScheduleArray[aCol, aRow].FlagClick then
+    ScheduleData[aCol, aRow].FlagClick then
   begin
     DG.Canvas.Pen.Color := clLime;
     DG.Canvas.Pen.Width := 5;
@@ -798,7 +810,7 @@ begin
   DG.Canvas.Pen.Width := 1;//Отрисовка индикаторов
   DG.Canvas.Pen.Color := clBlack;
   DG.Canvas.Rectangle(aRect);
-  if (DG.RowHeights[aRow] < ScheduleArray[aCol, aRow].TotalHeight) and
+  if (DG.RowHeights[aRow] < ScheduleData[aCol, aRow].TotalHeight) and
     (aRow * aCol <> 0) then
   begin
     SetLength(triangle, 3);
@@ -812,6 +824,7 @@ begin
 end;
 
 initialization
-  HConflict := THash.Create;
+  HAllItems := THash.Create;
+  HKeyConflicts := THash.Create;
 
 end.

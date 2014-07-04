@@ -89,7 +89,7 @@
       <Unit6>
         <Filename Value="scheduleform.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="FShedule"/>
+        <ComponentName Value="FSchedule"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ScheduleForm"/>

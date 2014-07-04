@@ -1,12 +1,12 @@
 object FormEdit: TFormEdit
-  Left = 476
+  Left = 508
   Height = 400
-  Top = 131
+  Top = 267
   Width = 368
   BorderStyle = bsToolWindow
   Caption = 'Редактирование'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 400
+  ClientWidth = 368
   OnCreate = FormCreate
   LCLVersion = '1.2.2.0'
   object Panel1: TPanel

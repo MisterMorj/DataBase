@@ -23,7 +23,7 @@ begin
   Application.CreateForm(TFMain, FMain);
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TCatalog, Catalog);
-  Application.CreateForm(TFShedule, FShedule);
+  Application.CreateForm(TFSchedule, FSchedule);
   Application.CreateForm(TFConflict, FConflict);
   Application.Run;
 end.

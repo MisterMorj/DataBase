@@ -1,8 +1,8 @@
 object DataModule1: TDataModule1
   OldCreateOrder = False
   Height = 154
-  HorizontalOffset = 385
-  VerticalOffset = 136
+  HorizontalOffset = 328
+  VerticalOffset = 228
   Width = 313
   object IBConnection1: TIBConnection
     Connected = False

@@ -45,8 +45,8 @@ procedure TFMain.FormCreate(Sender: TObject);
 var
   i: integer;
 begin
-  SetLength(MenuTable, NumberOfTables);
-  for i := 0 to NumberOfTables - 1 do
+  SetLength(MenuTable, Length(Table));
+  for i := 0 to High(Table) do
   begin
     MenuTable[i] := TMenuItem.Create(CatalogsMenu);
     MenuTable[i].Caption := Table[i].TableNameRus;
@@ -59,7 +59,7 @@ end;
 
 procedure TFMain.ScheduleClick(Sender: TObject);
 begin
-  FShedule.Show;
+  FSchedule.Show;
 end;
 
 end.

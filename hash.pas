@@ -17,6 +17,7 @@ const
 type
   TItemForHash = record
     ID: integer;
+    InvolvedInConflict: boolean;
     List: TStringList;
   end;
 
@@ -27,7 +28,9 @@ type
     function HashVal(Key: integer): integer;
     procedure Add (Item: TItemForHash);
     procedure Remove (Key: integer);
-    function ReturnVal (Key: integer): TItemForHash;
+    function FindKey (Key: integer): integer;
+    procedure AddNewItemInRecord(Key: integer; Conflict: string);
+    function ReturnVal(Key: integer): TItemForHash;
   end;
 
 implementation
@@ -70,11 +73,12 @@ begin
     if (hash_table[p].ID = 0) then
       break;
   end;
+  hash_table[p].InvolvedInConflict := false;
   if (hash_table[p].ID <> 0) then
       hash_table[p].ID := -1;
 end;
 
-function THash.ReturnVal(Key: integer): TItemForHash;
+function THash.FindKey(Key: integer): integer;
 var
   p: integer;
 begin
@@ -85,8 +89,23 @@ begin
         exit;
       p := HashVal(p);
   end;
-  Result := hash_table[p];
+  Result := p;
 end;
+
+procedure THash.AddNewItemInRecord(Key: integer; Conflict: string);
+begin
+  Key := FindKey(Key);
+  if not (hash_table[Key].InvolvedInConflict) then
+    hash_table[Key].List.Clear;
+  hash_table[Key].List.Add(Conflict);
+  hash_table[Key].InvolvedInConflict := true;
+end;
+
+function THash.ReturnVal(Key: integer): TItemForHash;
+begin
+  Result := hash_table[FindKey(Key)];
+end;
+
 
 end.
 

@@ -1,8 +1,8 @@
 object Catalog: TCatalog
-  Left = 330
+  Left = 133
   Height = 344
-  Top = 159
-  Width = 656
+  Top = 139
+  Width = 1050
   Caption = 'Каталоги'
   ClientHeight = 0
   ClientWidth = 0
@@ -16,7 +16,7 @@ object Catalog: TCatalog
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 353
+    Left = 747
     Height = 176
     Top = 168
     Width = 303
@@ -31,7 +31,7 @@ object Catalog: TCatalog
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 353
+    Left = 747
     Height = 168
     Top = 0
     Width = 303
@@ -66,7 +66,7 @@ object Catalog: TCatalog
     Left = 0
     Height = 302
     Top = 0
-    Width = 353
+    Width = 747
     Anchors = [akTop, akLeft, akRight, akBottom]
     Color = clWindow
     Columns = <>
@@ -86,10 +86,10 @@ object Catalog: TCatalog
     Left = 0
     Height = 42
     Top = 302
-    Width = 353
+    Width = 747
     Anchors = [akLeft, akRight, akBottom]
     ClientHeight = 42
-    ClientWidth = 353
+    ClientWidth = 747
     TabOrder = 3
     object AddField: TButton
       Left = 8

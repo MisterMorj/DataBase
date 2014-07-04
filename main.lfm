@@ -1,7 +1,7 @@
 object FMain: TFMain
-  Left = 427
+  Left = 511
   Height = 220
-  Top = 94
+  Top = 123
   Width = 305
   Caption = 'Редактор расписания'
   Menu = MainMenu1
