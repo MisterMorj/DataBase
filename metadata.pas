@@ -7,7 +7,6 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, db;
 
-
 type ColumnInfo = record
   Width: integer;
   NameEng: string;
