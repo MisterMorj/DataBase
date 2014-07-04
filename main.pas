@@ -37,8 +37,6 @@ implementation
 { TFMain }
 
 procedure TFMain.CatalogsMenuClick(Sender: TObject);
-var
-  FormNum: integer;
 begin
   AddInCatalogs(Self, (Sender as TMenuItem).Tag);
 end;
@@ -57,6 +55,7 @@ begin
     CatalogsMenu.Add(MenuTable[i])
   end;
 end;
+
 
 procedure TFMain.ScheduleClick(Sender: TObject);
 begin

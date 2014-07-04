@@ -1,12 +1,12 @@
 object FMain: TFMain
-  Left = 391
+  Left = 427
   Height = 220
-  Top = 155
-  Width = 241
-  Caption = 'FMain'
+  Top = 94
+  Width = 305
+  Caption = 'Редактор расписания'
   Menu = MainMenu1
   OnCreate = FormCreate
-  LCLVersion = '1.0.1.3'
+  LCLVersion = '1.2.2.0'
   object MainMenu1: TMainMenu
     left = 128
     top = 104

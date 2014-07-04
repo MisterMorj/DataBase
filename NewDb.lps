@@ -1,18 +1,18 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="16">
+    <Units Count="30">
       <Unit0>
         <Filename Value="NewDb.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="NewDb"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="11"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="5" Y="28"/>
+        <CursorPos X="48" Y="11"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -25,8 +25,8 @@
         <UnitName Value="main"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="11" Y="63"/>
+        <TopLine Value="6"/>
+        <CursorPos X="31" Y="16"/>
         <ComponentState Value="1"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -36,10 +36,10 @@
         <Filename Value="metadata.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="metadata"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="14"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="59" Y="10"/>
+        <TopLine Value="9"/>
+        <CursorPos X="50" Y="119"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit2>
@@ -50,10 +50,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="SqlComponents"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="12"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="38" Y="20"/>
+        <CursorPos X="36" Y="13"/>
         <ComponentState Value="1"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -66,10 +66,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UCatalogs"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="10" Y="37"/>
+        <TopLine Value="30"/>
+        <CursorPos X="34" Y="37"/>
         <ComponentState Value="1"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -82,10 +82,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Ueditingform"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="143"/>
-        <CursorPos X="23" Y="82"/>
+        <TopLine Value="56"/>
+        <CursorPos X="34" Y="147"/>
         <ComponentState Value="1"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -101,9 +101,8 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="280"/>
-        <CursorPos X="6" Y="305"/>
-        <FoldState Value=" T3lR0Bf"/>
+        <TopLine Value="434"/>
+        <CursorPos X="49" Y="445"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -112,10 +111,10 @@
         <Filename Value="filters.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Filters"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="10"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="13"/>
+        <TopLine Value="32"/>
+        <CursorPos X="17" Y="34"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit7>
@@ -123,196 +122,343 @@
         <Filename Value="uquery.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UQuery"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="27"/>
-        <CursorPos X="3" Y="35"/>
+        <TopLine Value="1"/>
+        <CursorPos X="8" Y="106"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
-        <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
+        <Filename Value="move.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Move"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="438"/>
-        <CursorPos X="54" Y="452"/>
-        <UsageCount Value="17"/>
+        <TopLine Value="1"/>
+        <CursorPos X="70" Y="12"/>
+        <UsageCount Value="210"/>
       </Unit9>
       <Unit10>
-        <Filename Value="C:\lazarus\lcl\grids.pas"/>
-        <UnitName Value="Grids"/>
-        <EditorIndex Value="2"/>
+        <Filename Value="conflicts.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FConflict"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="conflicts"/>
+        <EditorIndex Value="13"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="9422"/>
-        <CursorPos X="1" Y="9503"/>
-        <UsageCount Value="13"/>
+        <TopLine Value="30"/>
+        <CursorPos X="30" Y="59"/>
+        <ComponentState Value="1"/>
+        <UsageCount Value="208"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit10>
       <Unit11>
-        <Filename Value="C:\lazarus\lcl\customtimer.pas"/>
-        <UnitName Value="CustomTimer"/>
+        <Filename Value="save.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Save"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="164"/>
-        <CursorPos X="1" Y="182"/>
-        <UsageCount Value="7"/>
+        <TopLine Value="68"/>
+        <CursorPos X="49" Y="57"/>
+        <UsageCount Value="198"/>
+        <Loaded Value="True"/>
       </Unit11>
       <Unit12>
-        <Filename Value="C:\lazarus\lcl\interfaces\win32\win32callback.inc"/>
+        <Filename Value="formatstosave.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="FormatsToSave"/>
+        <EditorIndex Value="9"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="2714"/>
-        <CursorPos X="1" Y="2742"/>
-        <UsageCount Value="3"/>
+        <TopLine Value="14"/>
+        <CursorPos X="52" Y="30"/>
+        <UsageCount Value="198"/>
+        <Loaded Value="True"/>
       </Unit12>
       <Unit13>
-        <Filename Value="C:\lazarus\lcl\controls.pp"/>
-        <UnitName Value="Controls"/>
+        <Filename Value="hash.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Hash"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1575"/>
-        <CursorPos X="14" Y="1593"/>
-        <UsageCount Value="4"/>
+        <TopLine Value="56"/>
+        <CursorPos X="46" Y="74"/>
+        <UsageCount Value="52"/>
+        <Loaded Value="True"/>
       </Unit13>
       <Unit14>
-        <Filename Value="C:\lazarus\lcl\include\control.inc"/>
+        <Filename Value="C:\lazarus\lcl\grids.pas"/>
+        <UnitName Value="Grids"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="4027"/>
-        <CursorPos X="1" Y="4045"/>
-        <UsageCount Value="7"/>
+        <TopLine Value="4562"/>
+        <CursorPos X="1" Y="4581"/>
+        <UsageCount Value="21"/>
       </Unit14>
       <Unit15>
-        <Filename Value="C:\lazarus\lcl\lclclasses.pp"/>
-        <UnitName Value="LCLClasses"/>
+        <Filename Value="C:\lazarus\lcl\interfaces\win32\win32callback.inc"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="113"/>
-        <CursorPos X="1" Y="132"/>
-        <UsageCount Value="7"/>
+        <TopLine Value="2599"/>
+        <CursorPos X="1" Y="2617"/>
+        <UsageCount Value="3"/>
       </Unit15>
+      <Unit16>
+        <Filename Value="C:\lazarus\lcl\include\control.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="3999"/>
+        <CursorPos X="1" Y="4017"/>
+        <UsageCount Value="4"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="C:\lazarus\fpc\2.6.4\source\rtl\inc\objpash.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="46"/>
+        <CursorPos X="8" Y="64"/>
+        <UsageCount Value="4"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="5311"/>
+        <CursorPos X="1" Y="5328"/>
+        <UsageCount Value="3"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="C:\lazarus\lcl\dbctrls.pp"/>
+        <UnitName Value="DbCtrls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1566"/>
+        <CursorPos X="69" Y="1581"/>
+        <UsageCount Value="8"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="C:\lazarus\lcl\dbgrids.pas"/>
+        <UnitName Value="DBGrids"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="3505"/>
+        <CursorPos X="41" Y="3518"/>
+        <UsageCount Value="2"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="C:\lazarus\lcl\include\buttoncontrol.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="56"/>
+        <CursorPos X="12" Y="41"/>
+        <UsageCount Value="2"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="C:\lazarus\lcl\include\buttons.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="152"/>
+        <CursorPos X="1" Y="170"/>
+        <UsageCount Value="2"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="C:\lazarus\fpc\2.6.4\source\packages\fcl-db\src\base\db.pas"/>
+        <UnitName Value="db"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="402"/>
+        <CursorPos X="28" Y="419"/>
+        <UsageCount Value="1"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="C:\lazarus\fpc\2.6.4\source\packages\fcl-db\src\base\dataset.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1716"/>
+        <CursorPos X="63" Y="1722"/>
+        <UsageCount Value="0"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="436"/>
+        <CursorPos X="1" Y="454"/>
+        <UsageCount Value="1"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="C:\lazarus\lcl\include\speedbutton.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="420"/>
+        <CursorPos X="1" Y="438"/>
+        <UsageCount Value="2"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="C:\lazarus\lcl\lclmessageglue.pas"/>
+        <UnitName Value="LCLMessageGlue"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="102"/>
+        <CursorPos X="1" Y="123"/>
+        <UsageCount Value="3"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
+        <UnitName Value="ExtCtrls"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="440"/>
+        <CursorPos X="3" Y="458"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="C:\lazarus\lcl\controls.pp"/>
+        <UnitName Value="Controls"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2187"/>
+        <CursorPos X="36" Y="2196"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit29>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="297" Column="1" TopLine="283"/>
+        <Caret Line="193" Column="1" TopLine="178"/>
       </Position1>
       <Position2>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="304" Column="1" TopLine="283"/>
+        <Caret Line="355" Column="29" TopLine="337"/>
       </Position2>
       <Position3>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="305" Column="1" TopLine="283"/>
+        <Caret Line="354" Column="6" TopLine="337"/>
       </Position3>
       <Position4>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="307" Column="1" TopLine="283"/>
+        <Caret Line="91" Column="25" TopLine="332"/>
       </Position4>
       <Position5>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="308" Column="1" TopLine="283"/>
+        <Caret Line="74" Column="5" TopLine="56"/>
       </Position5>
       <Position6>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="309" Column="1" TopLine="283"/>
+        <Caret Line="354" Column="38" TopLine="326"/>
       </Position6>
       <Position7>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="300" Column="48" TopLine="286"/>
+        <Caret Line="355" Column="33" TopLine="337"/>
       </Position7>
       <Position8>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="299" Column="1" TopLine="286"/>
+        <Caret Line="74" Column="5" TopLine="56"/>
       </Position8>
       <Position9>
-        <Filename Value="scheduleform.pas"/>
-        <Caret Line="300" Column="1" TopLine="286"/>
+        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
+        <Caret Line="509" Column="3" TopLine="491"/>
       </Position9>
       <Position10>
-        <Filename Value="scheduleform.pas"/>
-        <Caret Line="301" Column="1" TopLine="286"/>
+        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
+        <Caret Line="458" Column="3" TopLine="467"/>
       </Position10>
       <Position11>
-        <Filename Value="scheduleform.pas"/>
-        <Caret Line="302" Column="1" TopLine="286"/>
+        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
+        <Caret Line="41" Column="24" TopLine="23"/>
       </Position11>
       <Position12>
-        <Filename Value="scheduleform.pas"/>
-        <Caret Line="299" Column="1" TopLine="286"/>
+        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
+        <Caret Line="42" Column="53" TopLine="23"/>
       </Position12>
       <Position13>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="300" Column="1" TopLine="286"/>
+        <Caret Line="352" Column="38" TopLine="332"/>
       </Position13>
       <Position14>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="302" Column="11" TopLine="286"/>
+        <Caret Line="74" Column="5" TopLine="65"/>
       </Position14>
       <Position15>
-        <Filename Value="scheduleform.pas"/>
-        <Caret Line="308" Column="25" TopLine="103"/>
+        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
+        <Caret Line="509" Column="3" TopLine="494"/>
       </Position15>
       <Position16>
-        <Filename Value="scheduleform.pas"/>
-        <Caret Line="321" Column="25" TopLine="295"/>
+        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
+        <Caret Line="458" Column="3" TopLine="440"/>
       </Position16>
       <Position17>
-        <Filename Value="scheduleform.pas"/>
-        <Caret Line="320" Column="45" TopLine="299"/>
+        <Filename Value="C:\lazarus\lcl\controls.pp"/>
+        <Caret Line="2203" Column="3" TopLine="2185"/>
       </Position17>
       <Position18>
-        <Filename Value="scheduleform.pas"/>
-        <Caret Line="324" Column="84" TopLine="303"/>
+        <Filename Value="C:\lazarus\lcl\controls.pp"/>
+        <Caret Line="2196" Column="36" TopLine="2187"/>
       </Position18>
       <Position19>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="322" Column="30" TopLine="298"/>
+        <Caret Line="24" Column="37" TopLine="6"/>
       </Position19>
       <Position20>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="81" Column="24" TopLine="63"/>
+        <Caret Line="146" Column="48" TopLine="116"/>
       </Position20>
       <Position21>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="310" Column="20" TopLine="296"/>
+        <Caret Line="24" Column="31" TopLine="1"/>
       </Position21>
       <Position22>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="327" Column="90" TopLine="307"/>
+        <Caret Line="218" Column="41" TopLine="196"/>
       </Position22>
       <Position23>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="452" Column="63" TopLine="443"/>
+        <Caret Line="441" Column="35" TopLine="437"/>
       </Position23>
       <Position24>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="297" Column="40" TopLine="275"/>
+        <Caret Line="430" Column="18" TopLine="733"/>
       </Position24>
       <Position25>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="68" Column="34" TopLine="50"/>
+        <Caret Line="744" Column="70" TopLine="733"/>
       </Position25>
       <Position26>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="74" Column="32" TopLine="50"/>
+        <Caret Line="447" Column="35" TopLine="745"/>
       </Position26>
       <Position27>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="297" Column="40" TopLine="267"/>
+        <Caret Line="767" Column="86" TopLine="162"/>
       </Position27>
       <Position28>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="316" Column="29" TopLine="286"/>
+        <Caret Line="519" Column="56" TopLine="505"/>
       </Position28>
       <Position29>
         <Filename Value="scheduleform.pas"/>
-        <Caret Line="444" Column="38" TopLine="414"/>
+        <Caret Line="515" Column="126" TopLine="505"/>
       </Position29>
+      <Position30>
+        <Filename Value="scheduleform.pas"/>
+        <Caret Line="167" Column="3" TopLine="163"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
+    <BreakPoints Count="2">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="scheduleform.pas"/>
+        <Line Value="450"/>
+      </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="scheduleform.pas"/>
+        <Line Value="457"/>
+      </Item2>
+    </BreakPoints>
     <Watches Count="1">
       <Item1>
         <Expression Value="EditItem.Top"/>
       </Item1>
     </Watches>
   </Debugging>
+  <EditorMacros Count="0"/>
 </CONFIG>

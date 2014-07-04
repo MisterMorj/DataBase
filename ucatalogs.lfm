@@ -1,12 +1,12 @@
 object Catalog: TCatalog
-  Left = 186
-  Height = 477
-  Top = 77
-  Width = 829
-  Caption = 'Catalog'
+  Left = 330
+  Height = 344
+  Top = 159
+  Width = 656
+  Caption = 'Каталоги'
   ClientHeight = 0
   ClientWidth = 0
-  LCLVersion = '1.0.1.3'
+  LCLVersion = '1.2.2.0'
   object ScrollBox1: TScrollBox
     AnchorSideLeft.Control = DBGrid1
     AnchorSideLeft.Side = asrBottom
@@ -16,12 +16,12 @@ object Catalog: TCatalog
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 526
-    Height = 309
+    Left = 353
+    Height = 176
     Top = 168
     Width = 303
     HorzScrollBar.Page = 299
-    VertScrollBar.Page = 305
+    VertScrollBar.Page = 172
     Anchors = [akTop, akLeft, akRight, akBottom]
     TabOrder = 0
   end
@@ -31,7 +31,7 @@ object Catalog: TCatalog
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 526
+    Left = 353
     Height = 168
     Top = 0
     Width = 303
@@ -64,9 +64,9 @@ object Catalog: TCatalog
     AnchorSideRight.Control = ToolPanel
     AnchorSideBottom.Control = Panel2
     Left = 0
-    Height = 435
+    Height = 302
     Top = 0
-    Width = 526
+    Width = 353
     Anchors = [akTop, akLeft, akRight, akBottom]
     Color = clWindow
     Columns = <>
@@ -85,11 +85,11 @@ object Catalog: TCatalog
     AnchorSideBottom.Side = asrBottom
     Left = 0
     Height = 42
-    Top = 435
-    Width = 526
+    Top = 302
+    Width = 353
     Anchors = [akLeft, akRight, akBottom]
     ClientHeight = 42
-    ClientWidth = 526
+    ClientWidth = 353
     TabOrder = 3
     object AddField: TButton
       Left = 8
@@ -127,7 +127,7 @@ object Catalog: TCatalog
     left = 552
     top = 192
   end
-  object Datasource: TDatasource
+  object Datasource: TDataSource
     DataSet = SQLQuery
     left = 616
     top = 192

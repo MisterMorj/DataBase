@@ -1,0 +1,26 @@
+object FConflict: TFConflict
+  Left = 253
+  Height = 384
+  Top = 155
+  Width = 592
+  BorderStyle = bsSingle
+  Caption = 'FConflict'
+  ClientHeight = 0
+  ClientWidth = 0
+  LCLVersion = '1.2.2.0'
+  object TreeView1: TTreeView
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 0
+    Height = 384
+    Top = 0
+    Width = 592
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    DefaultItemHeight = 18
+    TabOrder = 0
+  end
+end

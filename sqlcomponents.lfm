@@ -1,13 +1,13 @@
 object DataModule1: TDataModule1
   OldCreateOrder = False
   Height = 154
-  HorizontalOffset = 726
-  VerticalOffset = 439
+  HorizontalOffset = 385
+  VerticalOffset = 136
   Width = 313
   object IBConnection1: TIBConnection
     Connected = False
     LoginPrompt = False
-    DatabaseName = 'C:\database\NEWDB.FDB'
+    DatabaseName = 'C:\DataBaseBL\NEWDB.FDB'
     KeepConnection = False
     Password = 'masterkey'
     Transaction = SQLTransaction1

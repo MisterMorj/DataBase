@@ -1,18 +1,29 @@
 object FShedule: TFShedule
-  Left = 668
-  Height = 500
-  Top = 129
-  Width = 657
-  Caption = 'FShedule'
-  ClientHeight = 500
-  ClientWidth = 657
+  Left = 640
+  Height = 498
+  Top = 104
+  Width = 656
+  Caption = 'Расписание'
+  ClientHeight = 478
+  ClientWidth = 656
+  Menu = MainMenu1
   OnCreate = FormCreate
-  LCLVersion = '1.0.1.3'
+  LCLVersion = '1.2.2.0'
+  object ScrollBox2: TScrollBox
+    AnchorSideLeft.Control = Owner
+    Left = 0
+    Height = 56
+    Top = 0
+    Width = 62
+    HorzScrollBar.Page = 58
+    VertScrollBar.Page = 52
+    TabOrder = 5
+  end
   object Panel1: TPanel
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 354
+    Left = 353
     Height = 120
     Top = 0
     Width = 303
@@ -29,23 +40,23 @@ object FShedule: TFShedule
       OnClick = ApplyClick
       TabOrder = 0
     end
-    object Label1: TLabel
+    object AxisXName: TLabel
       Left = 33
-      Height = 16
+      Height = 15
       Top = 72
-      Width = 80
+      Width = 79
       Caption = 'Поле по оси Х'
       ParentColor = False
     end
-    object Label2: TLabel
+    object AxisYName: TLabel
       Left = 193
-      Height = 16
+      Height = 15
       Top = 72
-      Width = 80
+      Width = 79
       Caption = 'Поле по оси У'
       ParentColor = False
     end
-    object AxisX: TComboBox
+    object AxisXCB: TComboBox
       Left = 1
       Height = 23
       Top = 48
@@ -54,7 +65,7 @@ object FShedule: TFShedule
       Style = csDropDownList
       TabOrder = 1
     end
-    object AxisY: TComboBox
+    object AxisYCB: TComboBox
       Left = 156
       Height = 23
       Top = 48
@@ -65,7 +76,7 @@ object FShedule: TFShedule
     end
   end
   object OutputField: TCheckGroup
-    AnchorSideLeft.Control = DrawGrid1
+    AnchorSideLeft.Control = DG
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Panel1
     AnchorSideTop.Side = asrBottom
@@ -73,7 +84,7 @@ object FShedule: TFShedule
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Panel2
     AnchorSideBottom.Side = asrBottom
-    Left = 354
+    Left = 353
     Height = 184
     Top = 120
     Width = 303
@@ -90,16 +101,16 @@ object FShedule: TFShedule
     ChildSizing.ControlsPerLine = 1
     TabOrder = 1
   end
-  object DrawGrid1: TDrawGrid
+  object DG: TDrawGrid
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Panel1
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
-    Height = 500
+    Height = 478
     Top = 0
-    Width = 354
+    Width = 353
     AlternateColor = clGradientInactiveCaption
     Anchors = [akTop, akLeft, akRight, akBottom]
     Color = clWhite
@@ -112,11 +123,12 @@ object FShedule: TFShedule
     Options = [goFixedVertLine, goVertLine, goHorzLine, goRowSizing, goColSizing, goThumbTracking, goSmoothScroll, goDontScrollPartCell]
     RowCount = 0
     TabOrder = 2
-    OnDrawCell = DrawGrid1DrawCell
-    OnSelectCell = DrawGrid1SelectCell
+    OnDrawCell = DGDrawCell
+    OnMouseDown = DGMouseDown
+    OnMouseMove = DGMouseMove
   end
   object Panel2: TPanel
-    AnchorSideLeft.Control = DrawGrid1
+    AnchorSideLeft.Control = DG
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = OutputField
     AnchorSideTop.Side = asrBottom
@@ -124,7 +136,7 @@ object FShedule: TFShedule
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 354
+    Left = 353
     Height = 32
     Top = 304
     Width = 303
@@ -143,7 +155,7 @@ object FShedule: TFShedule
     end
   end
   object ScrollBox1: TScrollBox
-    AnchorSideLeft.Control = DrawGrid1
+    AnchorSideLeft.Control = DG
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Panel2
     AnchorSideTop.Side = asrBottom
@@ -151,14 +163,22 @@ object FShedule: TFShedule
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 354
-    Height = 164
+    Left = 353
+    Height = 142
     Top = 336
     Width = 303
     HorzScrollBar.Page = 299
-    VertScrollBar.Page = 160
+    VertScrollBar.Page = 138
     Anchors = [akTop, akLeft, akRight, akBottom]
+    ClientHeight = 138
+    ClientWidth = 299
     TabOrder = 4
+    object Image1: TImage
+      Left = 40
+      Height = 90
+      Top = 8
+      Width = 90
+    end
   end
   object SQLQuery1: TSQLQuery
     FieldDefs = <>
@@ -168,10 +188,17 @@ object FShedule: TFShedule
     left = 120
     top = 128
   end
-  object Datasource1: TDatasource
+  object Datasource1: TDataSource
     DataSet = SQLQuery1
     left = 192
     top = 128
+  end
+  object TimerExtension: TTimer
+    Enabled = False
+    Interval = 20
+    OnTimer = TimerExtensionTimer
+    left = 560
+    top = 152
   end
   object ImageList1: TImageList
     left = 120
@@ -308,10 +335,39 @@ object FShedule: TFShedule
       23FF7E7E7EFFF6F6F6FFFFFFFFFF
     }
   end
-  object Timer1: TTimer
-    Interval = 200
-    OnTimer = Timer1Timer
-    left = 360
-    top = 160
+  object TimerCollapsing: TTimer
+    Enabled = False
+    Interval = 20
+    OnTimer = TimerCollapsingTimer
+    left = 464
+    top = 152
+  end
+  object MainMenu1: TMainMenu
+    left = 376
+    top = 152
+    object ItemFile: TMenuItem
+      Caption = 'Файл'
+      object FileSave: TMenuItem
+        Caption = 'Сохранить'
+        OnClick = FileSaveClick
+      end
+      object FileClose: TMenuItem
+        Caption = 'Выход'
+        OnClick = FileCloseClick
+      end
+    end
+    object FileConflict: TMenuItem
+      Caption = 'Конфликты'
+      OnClick = FileConflictClick
+    end
+  end
+  object SaveDialog1: TSaveDialog
+    left = 376
+    top = 224
+  end
+  object SaveDialog2: TSaveDialog
+    Filter = 'html|.html|excel|.xls'
+    left = 488
+    top = 248
   end
 end

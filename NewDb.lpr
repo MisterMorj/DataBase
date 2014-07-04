@@ -13,7 +13,7 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   Ueditingform,
   ScheduleForm,
   Filters,
-  UQuery { you can add units after this };
+  UQuery, Move, conflicts, Save, Hash;
 
 {$R *.res}
 
@@ -24,5 +24,6 @@ begin
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TCatalog, Catalog);
   Application.CreateForm(TFShedule, FShedule);
+  Application.CreateForm(TFConflict, FConflict);
   Application.Run;
 end.

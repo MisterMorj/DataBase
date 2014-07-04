@@ -103,8 +103,10 @@ begin
   SQLQuery.Close;
   SQLQuery.SQL.Text := StrQuery;
   for i := 0 to High(ArrayFilters.Filters) do
+  begin
     SQLQuery.ParamByName('value' + IntToStr(i)).AsString :=
       ArrayFilters.Filters[i].FilterVal.Text;
+  end;
   SQLQuery.Open;
 end;
 
